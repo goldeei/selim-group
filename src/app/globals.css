@@ -83,6 +83,12 @@
 			font-size: clamp(2rem, 4vw + 1rem, 5rem);
 		}
 	}
+	h4 {
+		@apply text-5xl;
+		&.responsive {
+			font-size: clamp(1rem, 4vw + 1rem, 3.5rem);
+		}
+	}
 }
 
 :root {
