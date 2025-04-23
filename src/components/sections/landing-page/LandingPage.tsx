@@ -1,6 +1,6 @@
 import LandingPageFooter from "@/app/assets/svgs/landing-page-footer.svg";
 import LandingPageLogo from "@/app/assets/svgs/landing-page__desktop.svg";
-import { Separator } from "../ui/Separator";
+import { Separator } from "../../ui/Separator";
 
 export const LandingPage = () => {
 	return (
@@ -11,7 +11,7 @@ export const LandingPage = () => {
 					preserveAspectRatio="xMidYMid meet"
 				/>
 				<Separator />
-				<h2 className="text-primary__lighter tracking-widest">
+				<h2 className="text-primary__lighter tracking-widest responsive">
 					WE DO HOUSES AND STUFF
 				</h2>
 			</div>
