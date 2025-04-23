@@ -7,10 +7,14 @@ interface ProviderProps {
 	fallback: React.ReactNode;
 }
 
+function isMobileIsDefined(isMobile: boolean | undefined): isMobile is boolean {
+	return isMobile !== undefined;
+}
+
 const ContextGuard = ({ children, fallback }: ProviderProps) => {
 	const isMobile = useIsMobile();
 
-	if (isMobile === undefined) {
+	if (!isMobileIsDefined(isMobile)) {
 		return <>{fallback}</>;
 	}
 
