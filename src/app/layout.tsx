@@ -1,3 +1,4 @@
+import { AppProviders } from "@/context/AppProviders";
 import type { Metadata } from "next";
 import { Bebas_Neue, Oswald } from "next/font/google";
 import "./globals.css";
@@ -33,7 +34,7 @@ export default function RootLayout({
 			<body
 				className={`${oswald.variable} ${bebasNeue.variable} antialiased size-full`}
 			>
-				{children}
+				<AppProviders fallback={<div>...loading</div>}>{children}</AppProviders>
 			</body>
 		</html>
 	);
