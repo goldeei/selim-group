@@ -9,7 +9,7 @@ const IsMobileContext = createContext<IsMobile>(undefined);
 export function IsMobileProvider({ children }: { children: React.ReactNode }) {
 	const [isMobile, setIsMobile] = useState<IsMobile>(undefined);
 
-	const { width } = useWindowSize({ debounceDelay: 50 });
+	const { width } = useWindowSize();
 	useEffect(() => {
 		// tailwind sm breakpoint
 		if (width < 640) {
