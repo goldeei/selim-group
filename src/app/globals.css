@@ -79,6 +79,9 @@
 
 	h2 {
 		@apply text-7xl;
+		&.responsive {
+			font-size: clamp(2rem, 4vw + 1rem, 5rem);
+		}
 	}
 }
 
