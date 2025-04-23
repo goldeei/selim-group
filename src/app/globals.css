@@ -26,8 +26,10 @@
 	--color-input: var(--input);
 	--color-border: var(--border);
 	--color-destructive: var(--destructive);
+
 	--color-accent-foreground: var(--accent-foreground);
-	--color-accent: var(--accent);
+	--color-accent: var(--primary__dark);
+
 	--color-muted-foreground: var(--muted-foreground);
 	--color-muted: var(--muted);
 	--color-secondary-foreground: var(--secondary-foreground);
@@ -73,6 +75,10 @@
 	h5,
 	h6 {
 		font-family: var(--font-bebas-neue), Impact, sans-serif;
+	}
+
+	h2 {
+		@apply text-7xl;
 	}
 }
 
