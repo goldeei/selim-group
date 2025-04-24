@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { IsMobileProvider, useIsMobile } from "./isMobileContext";
 
 interface ProviderProps {
@@ -7,14 +8,15 @@ interface ProviderProps {
 	fallback: React.ReactNode;
 }
 
-function isMobileIsDefined(isMobile: boolean | undefined): isMobile is boolean {
-	return isMobile !== undefined;
-}
-
 const ContextGuard = ({ children, fallback }: ProviderProps) => {
+	const [isMounted, setIsMounted] = useState(false);
 	const isMobile = useIsMobile();
 
-	if (!isMobileIsDefined(isMobile)) {
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
+
+	if (!isMounted || isMobile === undefined) {
 		return <>{fallback}</>;
 	}
 

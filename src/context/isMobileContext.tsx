@@ -1,25 +1,28 @@
 "use client";
 
-import { createContext, use, useEffect, useState } from "react";
+import { cache, createContext, use } from "react";
 import { useWindowSize } from "usehooks-ts";
 
 type IsMobile = undefined | boolean;
 const IsMobileContext = createContext<IsMobile>(undefined);
 
-export function IsMobileProvider({ children }: { children: React.ReactNode }) {
-	const [isMobile, setIsMobile] = useState<IsMobile>(undefined);
+const getIsMobile = cache((width: number) => {
+	return width < 640;
+});
 
+export function IsMobileProvider({ children }: { children: React.ReactNode }) {
 	const { width } = useWindowSize();
-	useEffect(() => {
-		// tailwind sm breakpoint
-		if (width < 640) {
-			setIsMobile(true);
-		} else {
-			setIsMobile(false);
-		}
-	}, [width]);
+	const isMobile = getIsMobile(width);
 
 	return <IsMobileContext value={isMobile}>{children}</IsMobileContext>;
 }
 
-export const useIsMobile = () => use(IsMobileContext);
+export function useIsMobile(): boolean {
+	const context = use(IsMobileContext);
+
+	if (context === undefined) {
+		throw new Error("useIsMobile must be used within an IsMobileProvider");
+	}
+
+	return context;
+}
