@@ -1,4 +1,5 @@
 import { AppProviders } from "@/context/AppProviders";
+import { SanityLive } from "@/sanity/live";
 import type { Metadata } from "next";
 import { Bebas_Neue, Oswald } from "next/font/google";
 import { Suspense } from "react";
@@ -36,7 +37,10 @@ export default function RootLayout({
 				className={`${oswald.variable} ${bebasNeue.variable} antialiased size-full`}
 			>
 				<AppProviders fallback={<div>...loading</div>}>
-					<Suspense fallback={<div>...loading</div>}>{children}</Suspense>
+					<Suspense fallback={<div>...loading</div>}>
+						<SanityLive />
+						{children}
+					</Suspense>
 				</AppProviders>
 			</body>
 		</html>

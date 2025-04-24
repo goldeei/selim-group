@@ -1,10 +1,19 @@
-const classes = "text-primary__lighter tracking-widest responsive";
-const text = "WE DO HOUSES AND STUFF";
+"use client";
 
-export const LandingPageSubtitle = ({ isMobile }: { isMobile: boolean }) => {
+import { useIsMobile } from "@/context/isMobileContext";
+
+const classes = "text-primary__lighter tracking-widest responsive";
+
+interface LandingPageSubtitle {
+	subtitle: string;
+}
+export const LandingPageSubtitle = (props: LandingPageSubtitle) => {
+	const { subtitle } = props;
+
+	const isMobile = useIsMobile();
 	return isMobile ? (
-		<h4 className={classes}>{text}</h4>
+		<h4 className={classes}>{subtitle}</h4>
 	) : (
-		<h2 className={classes}>{text}</h2>
+		<h2 className={classes}>{subtitle}</h2>
 	);
 };
