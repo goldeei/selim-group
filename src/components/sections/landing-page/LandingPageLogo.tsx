@@ -1,18 +1,26 @@
-import dynamic from "next/dynamic";
-import { ComponentType, SVGProps } from "react";
+import { SVGProps, useMemo } from "react";
 
-type LogoSize = "mobile" | "desktop";
-
-const Logos: Record<LogoSize, ComponentType<SVGProps<SVGSVGElement>>> = {
-	mobile: dynamic(() => import("@/app/assets/svgs/landing-page__mobile.svg")),
-	desktop: dynamic(() => import("@/app/assets/svgs/landing-page__desktop.svg")),
-};
+import DesktopSVG from "@/app/assets/svgs/landing-page__desktop.svg";
+import MobileSVG from "@/app/assets/svgs/landing-page__mobile.svg";
+import { cn } from "@/lib/utils";
 
 interface LandingPageLogoProps extends SVGProps<SVGSVGElement> {
-	size?: LogoSize;
+	isMobile: boolean;
 }
 export const LandingPageLogo = (props: LandingPageLogoProps) => {
-	const { size = "desktop", ...rest } = props;
-	const Component = Logos[size];
-	return <Component {...rest} />;
+	const { isMobile, ...rest } = props;
+	const logoProps = useMemo(
+		() => ({
+			className: cn("h-fit w-full max-w-xl", isMobile && "w-4/5"),
+			preserveAspectRatio: "xMidYMid meet",
+			...rest,
+		}),
+		[rest, isMobile]
+	);
+
+	return isMobile ? (
+		<MobileSVG {...logoProps} />
+	) : (
+		<DesktopSVG {...logoProps} />
+	);
 };

@@ -1,6 +1,7 @@
 import { AppProviders } from "@/context/AppProviders";
 import type { Metadata } from "next";
 import { Bebas_Neue, Oswald } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 
 // Configure the Oswald font
@@ -34,7 +35,9 @@ export default function RootLayout({
 			<body
 				className={`${oswald.variable} ${bebasNeue.variable} antialiased size-full`}
 			>
-				<AppProviders fallback={<div>...loading</div>}>{children}</AppProviders>
+				<AppProviders fallback={<div>...loading</div>}>
+					<Suspense fallback={<div>...loading</div>}>{children}</Suspense>
+				</AppProviders>
 			</body>
 		</html>
 	);
