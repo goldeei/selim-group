@@ -10,11 +10,7 @@ export const Brand = (props: SVGProps<SVGSVGElement>) => {
 	const handleClick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
 	return (
-		<button
-			title="Brand"
-			className="cursor-pointer"
-			onPointerDown={handleClick}
-		>
+		<button title="Brand" onPointerDown={handleClick}>
 			<BrandLogo
 				{...rest}
 				className={cn("hover:brightness-110 transition-all", className)}
