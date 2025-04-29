@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
+		"dev:zscaler-env": "cross-env NODE_EXTRA_CA_CERTS=/Users/jgoldfarb/Documents/certs/zScaler.pem next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -11,6 +12,7 @@
 	"dependencies": {
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"cross-env": "^7.0.3",
 		"lucide-react": "^0.488.0",
 		"next": "15.3.0",
 		"next-sanity": "^9.10.2",
