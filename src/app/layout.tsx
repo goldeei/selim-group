@@ -1,3 +1,4 @@
+import { NavBar } from "@/components/navbar/NavBar";
 import { AppProviders } from "@/context/AppProviders";
 import { SanityLive } from "@/sanity/live";
 import type { Metadata } from "next";
@@ -33,12 +34,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="size-full">
-			<body
-				className={`${oswald.variable} ${bebasNeue.variable} antialiased size-full`}
-			>
+			<body className={`${oswald.variable} ${bebasNeue.variable} antialiased`}>
 				<AppProviders fallback={<div>...loading</div>}>
 					<Suspense fallback={<div>...loading</div>}>
 						<SanityLive />
+						<NavBar />
 						{children}
 					</Suspense>
 				</AppProviders>
