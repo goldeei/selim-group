@@ -1,15 +1,50 @@
+"use client";
+
 import { Brand } from "@/components/Brand";
+import { AnchorHTMLAttributes, useEffect, useState } from "react";
 import { NavMenu } from "./NavMenu";
 
+export type NavMenuItemProps = Pick<
+	AnchorHTMLAttributes<HTMLAnchorElement>,
+	"title" | "href"
+> & { name: string };
+
+const navMenuItems: NavMenuItemProps[] = [
+	{ name: "services", title: "Services", href: "#services" },
+	{ name: "renovations", title: "Renovations", href: "#renovations" },
+	{ name: "listings", title: "Listings", href: "#listings" },
+	{ name: "about-us", title: "About Us", href: "#about-us" },
+];
+
+export type NavMenuItemName = (typeof navMenuItems)[number]["name"];
+
 export const NavBar = () => {
+	const [activeItem, setActiveItem] = useState<NavMenuItemName | undefined>(
+		undefined
+	);
+	const handleNavItemClick = (name: NavMenuItemName | undefined) =>
+		setActiveItem(name);
+
+	useEffect(() => {
+		console.log(activeItem);
+	}, [activeItem]);
+
 	return (
 		<nav
 			aria-label="Main nav"
 			className="sticky top-0  h-fit bg-background p-2"
 		>
 			<div className="max-content-width mx-auto flex justify-between">
-				<Brand className="w-20 h-fit" />
-				<NavMenu />
+				<Brand
+					className="w-20 h-fit"
+					onPointerDown={() => handleNavItemClick(undefined)}
+					href={"#"}
+				/>
+				<NavMenu
+					navMenuItems={navMenuItems}
+					onNavItemClick={handleNavItemClick}
+					activeMenuItem={activeItem}
+				/>
 			</div>
 		</nav>
 	);

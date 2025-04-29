@@ -1,17 +1,27 @@
+import { NavMenuItemName, NavMenuItemProps } from "./NavBar";
 import { NavMenuItem } from "./NavMenuItem";
 
-const navMenuItems = [
-	{ name: "services", title: "Services", href: "#services" },
-	{ name: "renovations", title: "Renovations", href: "#renovations" },
-	{ name: "listings", title: "Listings", href: "#listings" },
-	{ name: "about-us", title: "About Us", href: "#about-us" },
-];
+interface NavMenuProps {
+	navMenuItems: NavMenuItemProps[];
+	activeMenuItem?: NavMenuItemName;
+	onNavItemClick?: (name: NavMenuItemName) => void;
+}
+export const NavMenu = (props: NavMenuProps) => {
+	const { navMenuItems, activeMenuItem, onNavItemClick } = props;
+	const handleNavItemClick = (name: NavMenuItemName) =>
+		onNavItemClick && onNavItemClick(name);
 
-export const NavMenu = () => {
 	return (
 		<ul className="flex gap-4 items-center">
 			{navMenuItems.map(({ name, title, href }) => (
-				<NavMenuItem key={name} id={name} title={name} href={href}>
+				<NavMenuItem
+					key={name}
+					id={name}
+					title={name}
+					href={href}
+					onPointerDown={() => handleNavItemClick(name)}
+					isActive={name === activeMenuItem}
+				>
 					{title}
 				</NavMenuItem>
 			))}
