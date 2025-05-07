@@ -2,6 +2,12 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { AnchorHTMLAttributes, useState } from "react";
 
+const transition = {
+	type: "spring",
+	stiffness: 500,
+	damping: 30,
+};
+
 interface NavMenuItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	isActive: boolean;
 }
@@ -22,29 +28,22 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 				animate={{
 					y: isActive ? -2 : 0,
 				}}
-				transition={{
-					type: "spring",
-					stiffness: 500,
-					damping: 30,
-				}}
+				transition={transition}
 				onPointerDown={onPointerDown}
 			>
 				{children}
 			</motion.a>
-			{isActive && (
+			{isActive || isHovered ? (
 				<motion.div
-					className="absolute bottom-0 left-0 w-full bg-secondary h-0.5 rounded"
-					layoutId="navbar-underline"
+					className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-secondary h-0.5 rounded"
+					initial={{ width: 0, opacity: 0.5 }}
+					animate={{
+						width: isActive ? "100%" : "1rem",
+						opacity: isActive ? 1 : 0.5,
+					}}
+					transition={transition}
 				/>
-			)}
-			{!isActive && isHovered && (
-				<motion.div
-					className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 bg-secondary/50 h-0.5 rounded"
-					initial={{ opacity: 0, scaleX: 0 }}
-					animate={{ opacity: 1, scaleX: 1 }}
-					exit={{ opacity: 0, scaleX: 0 }}
-				/>
-			)}
+			) : null}
 		</li>
 	);
 };
