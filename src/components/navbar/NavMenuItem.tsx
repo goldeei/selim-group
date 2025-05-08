@@ -36,7 +36,7 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 			{isActive || isHovered ? (
 				<motion.div
 					className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-secondary h-0.5 rounded"
-					initial={{ width: 0, opacity: 0.5 }}
+					initial={{ width: "1rem", opacity: 0 }}
 					animate={{
 						width: isActive ? "100%" : "1rem",
 						opacity: isActive ? 1 : 0.5,
