@@ -1,11 +1,11 @@
 import { NavBar } from "@/components/navbar/NavBar";
 import { AppProviders } from "@/context/AppProviders";
 import { SanityLive } from "@/sanity/live";
-import type { Metadata } from "next";
 import { Bebas_Neue, Oswald } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 
+import type { Metadata } from "next";
 // Configure the Oswald font
 const oswald = Oswald({
 	subsets: ["latin"],
@@ -34,6 +34,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="size-full">
+			<head>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+				/>
+			</head>
 			<body className={`${oswald.variable} ${bebasNeue.variable} antialiased`}>
 				<AppProviders fallback={<div>...loading</div>}>
 					<Suspense fallback={<div>...loading</div>}>
