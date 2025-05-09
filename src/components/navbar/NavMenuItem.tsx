@@ -55,7 +55,7 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 			{isActive || isHovered ? (
 				<motion.div
 					className={cn(
-						"absolute bg-secondary rounded",
+						"absolute bg-secondary rounded opacity-0",
 						isMobile
 							? "left-0 w-0.5"
 							: "bottom-0 -translate-x-1/2 h-0.5 left-1/2"
