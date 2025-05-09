@@ -28,7 +28,7 @@ export const NavBar = () => {
 		setActiveItem(name);
 
 	return (
-		<nav aria-label="Main nav" className="sticky top-0 h-fit bg-background p-2">
+		<nav aria-label="Main nav" className="sticky top-0 bg-background px-2 py-4">
 			<div className="max-content-width mx-auto flex justify-between items-center">
 				<Brand
 					className="w-20 h-fit"

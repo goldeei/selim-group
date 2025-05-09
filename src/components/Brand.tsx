@@ -13,7 +13,10 @@ export const Brand = (props: SVGProps<SVGSVGElement>) => {
 		<a href={href} title="Brand" onPointerDown={handleClick}>
 			<BrandLogo
 				{...rest}
-				className={cn("hover:brightness-110 transition-all", className)}
+				className={cn(
+					"w-full aspect-[141/86] hover:brightness-110 transition-all",
+					className
+				)}
 			/>
 		</a>
 	);
