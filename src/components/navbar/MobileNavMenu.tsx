@@ -4,8 +4,9 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 import { Button } from "../ui/button";
 import { NavMenuItemProps } from "./NavBar";
@@ -16,10 +17,19 @@ interface MobileNavMenuProps {
 
 export const MobileNavMenu = (props: MobileNavMenuProps) => {
 	const { children } = props;
+
+	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<DropdownMenu>
+		<DropdownMenu onOpenChange={setIsOpen}>
 			<DropdownMenuTrigger asChild>
-				<Button variant="ghost" size="icon">
+				<Button
+					variant="ghost"
+					size="icon"
+					className={cn(
+						"hover:bg-transparent hover:text-primary__light",
+						isOpen && "bg-primary shadow-inner text-primary__lighter"
+					)}
+				>
 					<MenuIcon className="size-6" />
 				</Button>
 			</DropdownMenuTrigger>
