@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { AnchorHTMLAttributes, useState } from "react";
 
 const transition = {
@@ -10,23 +10,42 @@ const transition = {
 
 interface NavMenuItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	isActive: boolean;
+	isMobile: boolean;
 }
 
+const variants = (isMobile: boolean, isActive: boolean) => {
+	const props: Variants = {};
+	props.animate = { opacity: isActive ? 1 : 0.5 };
+
+	if (isMobile) {
+		props.initial = { height: "1rem" };
+		props.animate = { ...props.animate, height: isActive ? "100%" : "1rem" };
+	} else {
+		props.initial = { width: "1rem", opacity: 0 };
+		props.animate = { ...props.animate, width: isActive ? "100%" : "1rem" };
+	}
+	return props;
+};
 export const NavMenuItem = (props: NavMenuItemProps) => {
-	const { id, className, children, href, isActive, onPointerDown } = props;
+	const { id, className, children, href, isActive, onPointerDown, isMobile } =
+		props;
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<li className="relative">
+		<li className="relative flex items-center">
 			<motion.a
 				id={id}
-				className={cn("font-heading block", isActive && "", className)}
+				className={cn(
+					"font-heading block leading-8",
+					isMobile && "ms-2",
+					className
+				)}
 				href={href}
 				aria-current={href === window.location.hash ? "page" : undefined}
 				onPointerEnter={() => setIsHovered(true)}
 				onPointerLeave={() => setIsHovered(false)}
 				animate={{
-					y: isActive ? -2 : 0,
+					y: !isMobile && isActive ? -2 : 0,
 				}}
 				transition={transition}
 				onPointerDown={onPointerDown}
@@ -35,12 +54,15 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 			</motion.a>
 			{isActive || isHovered ? (
 				<motion.div
-					className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-secondary h-0.5 rounded"
-					initial={{ width: "1rem", opacity: 0 }}
-					animate={{
-						width: isActive ? "100%" : "1rem",
-						opacity: isActive ? 1 : 0.5,
-					}}
+					className={cn(
+						"absolute bg-secondary rounded",
+						isMobile
+							? "left-0 w-0.5"
+							: "bottom-0 -translate-x-1/2 h-0.5 left-1/2"
+					)}
+					variants={variants(isMobile, isActive)}
+					initial="initial"
+					animate="animate"
 					transition={transition}
 				/>
 			) : null}

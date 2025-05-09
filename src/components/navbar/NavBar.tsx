@@ -1,8 +1,10 @@
 "use client";
 
 import { Brand } from "@/components/Brand";
-import { AnchorHTMLAttributes, useEffect, useState } from "react";
+import { AnchorHTMLAttributes, useState } from "react";
+
 import { NavMenu } from "./NavMenu";
+import { NavMenuContainer } from "./NavMenuContainer";
 
 export type NavMenuItemProps = Pick<
 	AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -25,26 +27,24 @@ export const NavBar = () => {
 	const handleNavItemClick = (name: NavMenuItemName | undefined) =>
 		setActiveItem(name);
 
-	useEffect(() => {
-		console.log(activeItem);
-	}, [activeItem]);
-
 	return (
 		<nav
 			aria-label="Main nav"
 			className="sticky top-0  h-fit bg-background p-2"
 		>
-			<div className="max-content-width mx-auto flex justify-between">
+			<div className="max-content-width mx-auto flex justify-between items-center">
 				<Brand
 					className="w-20 h-fit"
 					onPointerDown={() => handleNavItemClick(undefined)}
 					href={"#"}
 				/>
-				<NavMenu
-					navMenuItems={navMenuItems}
-					onNavItemClick={handleNavItemClick}
-					activeMenuItem={activeItem}
-				/>
+				<NavMenuContainer>
+					<NavMenu
+						navMenuItems={navMenuItems}
+						onNavItemClick={handleNavItemClick}
+						activeMenuItem={activeItem}
+					/>
+				</NavMenuContainer>
 			</div>
 		</nav>
 	);
