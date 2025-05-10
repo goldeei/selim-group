@@ -1,4 +1,4 @@
 export type ServiceItem = {
 	title: string;
-	descriptions: string;
+	description: string;
 };
