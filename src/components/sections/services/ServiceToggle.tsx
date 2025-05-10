@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 import { ServiceItem } from "./types";
 
@@ -20,10 +21,14 @@ export const ServiceToggle = ({
 	return (
 		<Button
 			onClick={handleClick}
-			className={`flex flex-col gap-4 p-6 rounded-lg shadow-md transition-all duration-300 w-full text-left
-				${isActive ? "bg-primary text-primary-foreground" : "bg-card text-primary"}`}
+			className={cn(
+				"rounded shadow transition-all font-heading",
+				isActive
+					? "bg-primary__lighter text-primary shadow-inner hover:bg-primary__lighter"
+					: "bg-primary"
+			)}
 		>
-			<h4 className="responsive">{title}</h4>
+			{title}
 		</Button>
 	);
 };
