@@ -89,6 +89,23 @@
 			font-size: clamp(1rem, 4vw + 1rem, 3.5rem);
 		}
 	}
+
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+	body[data-scroll-locked] {
+		overflow: auto !important;
+		margin-right: 0px !important;
+	}
+	a {
+		cursor: pointer;
+	}
+	.max-content-width {
+		max-width: 1920px;
+	}
 }
 
 :root {
@@ -171,23 +188,4 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
-	body {
-		@apply bg-background text-foreground;
-	}
-	body[data-scroll-locked] {
-		overflow: auto !important;
-		margin-right: 0px !important;
-	}
-	a {
-		cursor: pointer;
-	}
-	.max-content-width {
-		max-width: 1920px;
-	}
 }
