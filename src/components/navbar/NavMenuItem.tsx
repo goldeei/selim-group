@@ -34,7 +34,7 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 	return (
 		<li className="relative flex items-center">
 			<motion.a
-				id={id}
+				id={`${id}-link`}
 				className={cn(
 					"font-heading block leading-8",
 					isMobile && "ms-2",
