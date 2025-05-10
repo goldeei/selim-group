@@ -36,3 +36,4 @@ alwaysApply: true
 2. Be specific about the change
 3. Include the component/file affected if relevant
 4. Add more details in the body if needed
+5. Less is more, simply describe what changed is the shortest possible way
