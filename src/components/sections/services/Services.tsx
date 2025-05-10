@@ -36,9 +36,9 @@ const services: ServiceItem[] = [
 
 export const Services = () => {
 	return (
-		<div className="p-12 bg-background">
+		<section id="services" className="p-12 bg-background">
 			<h2 className="responsive">Services</h2>
 			<ServicesContainer services={services} />
-		</div>
+		</section>
 	);
 };
