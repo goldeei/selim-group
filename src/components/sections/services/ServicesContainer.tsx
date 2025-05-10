@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { ServiceDescription } from "./ServiceDescription";
 import { ServiceToggle } from "./ServiceToggle";
 import { ServiceItem } from "./types";
 
@@ -13,20 +14,31 @@ interface ServicesContainerProps {
 const ServicesContainer = (props: ServicesContainerProps) => {
 	const { services, defaultActiveService = "dumpster-rental" } = props;
 
-	const [activeService, setActiveService] = useState<
-		ServiceItem["title"] | null
-	>(defaultActiveService);
+	const [activeServiceId, setActiveServiceId] =
+		useState<ServiceItem["id"]>(defaultActiveService);
+
+	const activeService = services.find(
+		(service) => service.id === activeServiceId
+	);
 
 	return (
-		<div className="flex flex-col gap-4">
-			{services.map((service) => (
-				<ServiceToggle
-					key={service.title}
-					service={service}
-					isActive={activeService === service.id}
-					onClick={setActiveService}
+		<div className="flex gap-8">
+			<div className="flex flex-col gap-2 justify-between">
+				{services.map((service) => (
+					<ServiceToggle
+						key={service.id}
+						service={service}
+						isActive={activeServiceId === service.id}
+						onClick={setActiveServiceId}
+					/>
+				))}
+			</div>
+			{activeService && (
+				<ServiceDescription
+					title={activeService.title}
+					description={activeService.description}
 				/>
-			))}
+			)}
 		</div>
 	);
 };
