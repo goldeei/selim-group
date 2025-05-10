@@ -1,6 +1,7 @@
 import LandingPageFooter from "@/app/assets/svgs/landing-page-footer.svg";
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
+
 import { Separator } from "../../ui/Separator";
 import { LandingPageLogo } from "./LandingPageLogo";
 import { LandingPageSubtitle } from "./LandingPageSubtitle";
@@ -20,7 +21,7 @@ export const LandingPage = async () => {
 				<Separator />
 				<LandingPageSubtitle subtitle={subtitle} />
 			</div>
-			<LandingPageFooter className="mt-auto" />
+			<LandingPageFooter className="mt-auto translate-y-0.5" />
 		</div>
 	);
 };
