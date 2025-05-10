@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 
 import { ServiceItem } from "./types";
@@ -7,7 +5,7 @@ import { ServiceItem } from "./types";
 interface ServiceToggleProps {
 	service: ServiceItem;
 	isActive: boolean;
-	onClick: () => void;
+	onClick: (id: ServiceItem["id"]) => void;
 }
 
 export const ServiceToggle = ({
@@ -15,11 +13,13 @@ export const ServiceToggle = ({
 	isActive,
 	onClick,
 }: ServiceToggleProps) => {
-	const { title } = service;
+	const { title, id } = service;
+
+	const handleClick = () => onClick(id);
 
 	return (
 		<Button
-			onClick={onClick}
+			onClick={handleClick}
 			className={`flex flex-col gap-4 p-6 rounded-lg shadow-md transition-all duration-300 w-full text-left
 				${isActive ? "bg-primary text-primary-foreground" : "bg-card text-primary"}`}
 		>
