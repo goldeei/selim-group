@@ -22,10 +22,10 @@ export const ServiceToggle = ({
 		<Button
 			onClick={handleClick}
 			className={cn(
-				"rounded shadow transition-all font-heading",
+				"rounded transition-all font-heading",
 				isActive
-					? "bg-primary__lighter text-primary shadow-inner hover:bg-primary__lighter"
-					: "bg-primary"
+					? "bg-primary__lighter text-primary !shadow-inner hover:bg-primary__lighter"
+					: "bg-primary shadow"
 			)}
 		>
 			{title}
