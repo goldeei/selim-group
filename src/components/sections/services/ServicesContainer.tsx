@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence } from "motion/react";
 import { useState } from "react";
 
 import { ServiceDescription } from "./ServiceDescription";
@@ -22,7 +23,7 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 	);
 
 	return (
-		<div className="flex gap-8">
+		<div className="relative flex gap-8">
 			<div className="flex flex-col gap-2 justify-between">
 				{services.map((service) => (
 					<ServiceToggle
@@ -33,12 +34,17 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 					/>
 				))}
 			</div>
-			{activeService && (
-				<ServiceDescription
-					title={activeService.title}
-					description={activeService.description}
-				/>
-			)}
+			<div className="relative flex-1 bg-white border-s-12 border-primary rounded-xs">
+				<AnimatePresence mode="wait">
+					{activeService && (
+						<ServiceDescription
+							key={activeService.id}
+							title={activeService.title}
+							description={activeService.description}
+						/>
+					)}
+				</AnimatePresence>
+			</div>
 		</div>
 	);
 };
