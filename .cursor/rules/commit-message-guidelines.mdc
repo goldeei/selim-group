@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Commit Message Guidelines
+
+## Pattern
+- Start with a verb in present tense
+- Keep first line under 50 characters
+- Focus on what changed and why
+
+## Examples
+✅ Good:
+- "Add user authentication"
+- "Fix navigation menu on mobile"
+- "Update README with setup instructions"
+- "Remove deprecated API endpoints"
+
+❌ Avoid:
+- "For user auth, adding login"
+- "Fixed the thing"
+- "Updates"
+- "For mobile, fixing nav"
+
+## Rules
+1. Use present tense verbs:
+   - Add
+   - Update
+   - Fix
+   - Remove
+   - Refactor
+   - Improve
+   - Change
+
+2. Be specific about the change
+3. Include the component/file affected if relevant
+4. Add more details in the body if needed

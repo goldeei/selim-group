@@ -1,0 +1,17 @@
+{
+	"rules": {
+		"commit-messages": {
+			"enabled": true,
+			"priority": "high",
+			"file": "rules/@commit-messages.mdc"
+		}
+	},
+	"commit": {
+		"message": {
+			"enforceRules": true,
+			"defaultRules": [
+				"commit-messages"
+			]
+		}
+	}
+}
