@@ -15,8 +15,8 @@ export const LandingPage = async () => {
 	const { data: subtitle } = await sanityFetch({ query: SUBTITLE_QUERY });
 
 	return (
-		<div className="bg-primary h-screen flex flex-col justify-center items-center overflow-hidden">
-			<div className="w-full max-w-4xl flex flex-col items-center gap-4 mt-auto px-4 md:px-0">
+		<div className="relative bg-primary h-screen flex flex-col justify-center items-center overflow-hidden">
+			<div className="fixed w-full max-w-4xl flex flex-col items-center gap-4 mt-auto px-4 md:px-0">
 				<LandingPageLogo />
 				<Separator />
 				<LandingPageSubtitle subtitle={subtitle} />
