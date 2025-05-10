@@ -1,0 +1,42 @@
+---
+description: This task is helpful for keeping standards when creating components
+globs: 
+alwaysApply: false
+---
+# Component Creation Pattern
+
+This document defines the preferred pattern for creating React components in this project.
+
+## Pattern
+
+interface ComponentProps {}
+```typescript
+const ComponentName = (props: ComponentProps) => {
+  const { prop } = props;
+  
+  return (
+    // Component JSX
+  );
+};
+```
+
+## Example
+
+interface ButtonProps {}
+```typescript
+const Button = (props: ButtonProps) => {
+  const { children, variant } = props;
+  
+  return (
+    <button className={variant}>
+      {children}
+    </button>
+  );
+};
+```
+
+## Rules
+- Use arrow function syntax
+- Destructure props at the start of the component
+- Use TypeScript for props typing
+- Follow PascalCase naming convention
