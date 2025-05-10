@@ -3,7 +3,7 @@
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ServiceDescription } from "./ServiceDescription";
 import { ServiceDescriptionContainer } from "./ServiceDescriptionContainer";
@@ -20,6 +20,8 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 
 	const isMobile = useIsMobile();
 
+	const currServiceRef = useRef<string | null>(null);
+
 	const [activeServiceId, setActiveServiceId] = useState<
 		ServiceItem["id"] | undefined
 	>(isMobile ? undefined : defaultActiveService);
@@ -28,14 +30,21 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 		(service) => service.id === activeServiceId
 	);
 
+	const handleServiceSelection = (id: ServiceItem["id"]) => {
+		setActiveServiceId(id);
+		currServiceRef.current = id;
+	};
+
 	useEffect(() => {
 		if (isMobile) {
 			setActiveServiceId(undefined);
+			currServiceRef.current = null;
 		}
-		if (!isMobile && !activeServiceId) {
+		if (!isMobile && !currServiceRef.current) {
 			setActiveServiceId(defaultActiveService);
+			currServiceRef.current = defaultActiveService;
 		}
-	}, [activeServiceId, defaultActiveService, isMobile]);
+	}, [defaultActiveService, isMobile]);
 
 	return (
 		<div className="flex gap-8 ">
@@ -45,7 +54,7 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 						key={service.id}
 						service={service}
 						isActive={activeServiceId === service.id}
-						onClick={setActiveServiceId}
+						onClick={handleServiceSelection}
 					/>
 				))}
 			</div>
