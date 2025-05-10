@@ -1,9 +1,12 @@
 "use client";
 
+import { useIsMobile } from "@/context/isMobileContext";
+import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ServiceDescription } from "./ServiceDescription";
+import { ServiceDescriptionContainer } from "./ServiceDescriptionContainer";
 import { ServiceToggle } from "./ServiceToggle";
 import { ServiceItem } from "./types";
 
@@ -15,16 +18,28 @@ interface ServicesContainerProps {
 const ServicesContainer = (props: ServicesContainerProps) => {
 	const { services, defaultActiveService = "dumpster-rental" } = props;
 
-	const [activeServiceId, setActiveServiceId] =
-		useState<ServiceItem["id"]>(defaultActiveService);
+	const isMobile = useIsMobile();
+
+	const [activeServiceId, setActiveServiceId] = useState<
+		ServiceItem["id"] | undefined
+	>(isMobile ? undefined : defaultActiveService);
 
 	const activeService = services.find(
 		(service) => service.id === activeServiceId
 	);
 
+	useEffect(() => {
+		if (isMobile) {
+			setActiveServiceId(undefined);
+		}
+		if (!isMobile && !activeServiceId) {
+			setActiveServiceId(defaultActiveService);
+		}
+	}, [activeServiceId, defaultActiveService, isMobile]);
+
 	return (
-		<div className="relative flex gap-8">
-			<div className="flex flex-col gap-2 justify-between">
+		<div className="flex gap-8 ">
+			<div className={cn("flex flex-col gap-6", isMobile && "flex-1")}>
 				{services.map((service) => (
 					<ServiceToggle
 						key={service.id}
@@ -34,17 +49,22 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 					/>
 				))}
 			</div>
-			<div className="relative flex-1 bg-white border-s-12 border-primary rounded-xs">
-				<AnimatePresence mode="wait">
-					{activeService && (
+			<AnimatePresence>
+				{activeService && (
+					<ServiceDescriptionContainer
+						isMobile={isMobile}
+						service={activeService}
+						onDialogClose={() => setActiveServiceId(undefined)}
+					>
 						<ServiceDescription
 							key={activeService.id}
 							title={activeService.title}
 							description={activeService.description}
+							isMobile={isMobile}
 						/>
-					)}
-				</AnimatePresence>
-			</div>
+					</ServiceDescriptionContainer>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };
