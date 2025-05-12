@@ -18,15 +18,15 @@ const services: ServiceItem[] = [
 		icon: <Dumpster />,
 	},
 	{
-		id: "licensed-realtors",
-		title: "Licensed Realtors",
+		id: "licensed-realty",
+		title: "Licensed Realty",
 		description:
 			"Expert real estate agents helping you buy, sell, or rent properties with professional guidance every step of the way.",
 		icon: <LicensedRealtors />,
 	},
 	{
-		id: "real-estate-investors",
-		title: "Real Estate Investors",
+		id: "real-estate-investment",
+		title: "Property Investment",
 		description:
 			"Strategic property investment services focused on identifying opportunities and maximizing returns in the real estate market.",
 		icon: <RealEstateInvestment />,
