@@ -14,7 +14,7 @@ export const ServiceToggle = ({
 	isActive,
 	onClick,
 }: ServiceToggleProps) => {
-	const { title, id } = service;
+	const { title, id, icon } = service;
 
 	const handleClick = () => onClick(id);
 
@@ -22,13 +22,14 @@ export const ServiceToggle = ({
 		<Button
 			onClick={handleClick}
 			className={cn(
-				"rounded transition-all font-heading text-xl",
+				"rounded transition-all font-heading text-xl flex items-center justify-between gap-6 h-fit py-2",
 				isActive
 					? "bg-primary__lighter text-primary !shadow-inner hover:bg-primary__lighter"
 					: "bg-primary shadow"
 			)}
 		>
 			{title}
+			<div className="h-6 w-8 flex justify-center ">{icon}</div>
 		</Button>
 	);
 };
