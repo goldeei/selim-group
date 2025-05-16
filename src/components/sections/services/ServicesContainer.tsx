@@ -77,5 +77,4 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 		</div>
 	);
 };
-
 export { ServicesContainer };
