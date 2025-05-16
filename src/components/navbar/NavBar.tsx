@@ -30,7 +30,7 @@ export const NavBar = () => {
 	return (
 		<nav
 			aria-label="Main nav"
-			className="sticky z-10 top-0 bg-background px-2 py-4"
+			className="w-full fixed z-10 top-0 bg-background px-2 py-4"
 		>
 			<div className="max-content-width mx-auto flex justify-between items-center">
 				<Brand
