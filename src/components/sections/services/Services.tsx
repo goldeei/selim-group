@@ -5,49 +5,36 @@ import {
 	LicensedRealtors,
 	RealEstateInvestment,
 } from "@/app/assets/svgs";
+import { sanityFetch } from "@/sanity/live";
+import { defineQuery } from "next-sanity";
 
 import { ServicesContainer } from "./ServicesContainer";
 import { ServiceItem } from "./types";
 
-const services: ServiceItem[] = [
-	{
-		id: "dumpster-rental",
-		title: "Dumpster Rental",
-		description:
-			"Convenient and reliable dumpster rental services for construction, renovation, and cleanup projects of any size.",
-		icon: <Dumpster />,
-	},
-	{
-		id: "licensed-realty",
-		title: "Licensed Realty",
-		description:
-			"Expert real estate agents helping you buy, sell, or rent properties with professional guidance every step of the way.",
-		icon: <LicensedRealtors />,
-	},
-	{
-		id: "real-estate-investment",
-		title: "Property Investment",
-		description:
-			"Strategic property investment services focused on identifying opportunities and maximizing returns in the real estate market.",
-		icon: <RealEstateInvestment />,
-	},
-	{
-		id: "interior-demolition",
-		title: "Interior Demolition",
-		description:
-			"Professional interior demolition services for residential and commercial properties, ensuring safe and efficient removal.",
-		icon: <InteriorDemolition />,
-	},
-	{
-		id: "home-renovation",
-		title: "Home Renovation",
-		description:
-			"Complete home renovation services from concept to completion, transforming your space with quality craftsmanship.",
-		icon: <InteriorRenovation />,
-	},
-];
+type IconKey = keyof typeof iconMap;
 
-export const Services = () => {
+const iconMap = {
+	Dumpster: <Dumpster />,
+	LicensedRealtors: <LicensedRealtors />,
+	RealEstateInvestment: <RealEstateInvestment />,
+	InteriorDemolition: <InteriorDemolition />,
+	InteriorRenovation: <InteriorRenovation />,
+} as const;
+
+const SERVICES_QUERY = defineQuery(`*[
+  _type == "service"
+] | order(orderRank asc)`);
+
+export const Services = async () => {
+	const { data } = await sanityFetch({ query: SERVICES_QUERY });
+
+	const services = data.map((service: ServiceItem) => ({
+		id: service.id,
+		title: service.title,
+		description: service.description,
+		icon: service.icon ? iconMap[service.icon as IconKey] : undefined,
+	}));
+
 	return (
 		<section id="services" className="p-12 bg-background">
 			<h2 className="responsive">Services</h2>

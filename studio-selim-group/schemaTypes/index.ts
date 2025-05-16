@@ -1,3 +1,4 @@
 import {landingPage} from './landingPage'
+import {service} from './service'
 
-export const schemaTypes = [landingPage]
+export const schemaTypes = [landingPage, service]
