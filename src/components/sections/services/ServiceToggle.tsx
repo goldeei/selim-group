@@ -29,7 +29,7 @@ export const ServiceToggle = ({
 			)}
 		>
 			{title}
-			<div className="h-6 w-8 flex justify-center ">{icon}</div>
+			{icon && <div className="h-6 w-8 flex justify-center ">{icon}</div>}
 		</Button>
 	);
 };
