@@ -11,7 +11,7 @@ const getIsMobile = cache((width: number) => {
 });
 
 export function IsMobileProvider({ children }: { children: React.ReactNode }) {
-	const { width } = useWindowSize();
+	const { width } = useWindowSize({ debounceDelay: 50 });
 	const isMobile = getIsMobile(width);
 
 	return <IsMobileContext value={isMobile}>{children}</IsMobileContext>;
