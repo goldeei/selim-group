@@ -44,6 +44,15 @@
 	--color-primary__darker: var(--primary__darker);
 	--color-primary-foreground: var(--primary__lighter);
 
+	/* Grey */
+	--color-grey__lightest: var(--grey__lightest);
+	--color-grey__lighter: var(--grey__lighter);
+	--color-grey__light: var(--grey__light);
+	--color-grey: var(--grey);
+	--color-grey__dark: var(--grey__dark);
+	--color-grey__darker: var(--grey__darker);
+	--color-grey__darkest: var(--grey__darkest);
+
 	--color-popover-foreground: var(--popover-foreground);
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
@@ -130,6 +139,15 @@
 	--secondary: #d57a30;
 	--secondary__dark: #d26206;
 	--secondary-foreground: white;
+
+	/* Greys */
+	--grey__lightest: #e8ecf2;
+	--grey__lighter: #bac6d7;
+	--grey__light: #8ca1bc;
+	--grey: #5e7ba1;
+	--grey__dark: #435873;
+	--grey__darker: #283545;
+	--grey__darkest: #0d1217;
 
 	--muted: oklch(0.97 0 0);
 	--muted-foreground: oklch(0.556 0 0);
