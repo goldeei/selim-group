@@ -98,7 +98,9 @@
 			font-size: clamp(1rem, 4vw + 1rem, 3.5rem);
 		}
 	}
-
+	p {
+		@apply text-2xl;
+	}
 	* {
 		@apply border-border outline-ring/50;
 	}
