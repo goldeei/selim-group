@@ -2,7 +2,7 @@ import { PropertyCarousel } from "@/components/property-carousel/PropertyCarouse
 
 export const Renovations = () => {
 	return (
-		<section id="renovations" className="bg-grey__darker h-screen">
+		<section id="renovations" className="bg-grey__darker">
 			<h2 className="responsive mb-4 text-grey__lightest">Renovations</h2>
 			<PropertyCarousel />
 		</section>
