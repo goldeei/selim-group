@@ -121,6 +121,7 @@
 	}
 	section {
 		@apply p-12;
+		padding-top: 150px;
 	}
 }
 
