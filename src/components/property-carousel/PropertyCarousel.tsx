@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { TextCard } from "../TextCard";
 import {
 	Carousel,
 	CarouselApi,
@@ -62,11 +63,15 @@ export const PropertyCarousel = () => {
 	}, [activeProperty]);
 
 	return (
-		<div className="grid grid-cols-3 gap-4">
-			<div className="col-span-1 flex flex-col justify-center text-primary__lighter">
-				<h4>{activeProperty.name}</h4>
-				<p>{activeProperty.description}</p>
-			</div>
+		<div className="grid grid-cols-3 gap-8">
+			<TextCard
+				key={activeProperty.id}
+				title={activeProperty.name}
+				description={activeProperty.description}
+				className="col-span-1 justify-center"
+				headerClassName="text-primary__lighter border-secondary__light"
+				descriptionClassName="text-primary__lighter"
+			/>
 			<Carousel className="col-span-2 relative" setApi={setApi}>
 				<CarouselContent>
 					{properties.map(({ id, srcPath, altText, width, height }) => (

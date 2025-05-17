@@ -1,11 +1,11 @@
 "use client";
 
+import { TextCard } from "@/components/TextCard";
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-import { ServiceDescription } from "./ServiceDescription";
 import { ServiceDescriptionContainer } from "./ServiceDescriptionContainer";
 import { ServiceToggle } from "./ServiceToggle";
 import { ServiceItem } from "./types";
@@ -65,11 +65,10 @@ const ServicesContainer = (props: ServicesContainerProps) => {
 						service={activeService}
 						onDialogClose={() => setActiveServiceId(undefined)}
 					>
-						<ServiceDescription
+						<TextCard
 							key={activeService.id}
 							title={activeService.title}
 							description={activeService.description}
-							isMobile={isMobile}
 						/>
 					</ServiceDescriptionContainer>
 				)}
