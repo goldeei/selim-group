@@ -4,7 +4,7 @@ export const Renovations = () => {
 	return (
 		<section
 			id="renovations"
-			className="h-screen flex flex-col bg-grey__darker"
+			className="h-screen min-h-fit flex flex-col bg-grey__darker"
 		>
 			<h2 className="responsive mb-4 text-grey__lightest">Renovations</h2>
 			<PropertyCarousel />
