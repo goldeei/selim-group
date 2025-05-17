@@ -119,6 +119,9 @@
 	.max-content-width {
 		max-width: 1920px;
 	}
+	section {
+		@apply p-12;
+	}
 }
 
 :root {

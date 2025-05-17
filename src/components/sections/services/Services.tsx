@@ -36,7 +36,7 @@ export const Services = async () => {
 	}));
 
 	return (
-		<section id="services" className="p-12 bg-background">
+		<section id="services" className="bg-background">
 			<h2 className="responsive mb-4">Services</h2>
 			<ServicesContainer services={services} />
 		</section>
