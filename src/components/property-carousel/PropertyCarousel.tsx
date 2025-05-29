@@ -62,19 +62,16 @@ export const PropertyCarousel = () => {
 	}, [activeProperty]);
 
 	return (
-		<div className="h-full grid grid-cols-1 lg:grid-cols-3 lg:gap-8">
+		<div className="h-fit grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 items-start lg:items-center">
 			<TextCard
 				key={activeProperty.id}
 				title={activeProperty.name}
 				description={activeProperty.description}
-				className="col-span-1 justify-center"
+				className="lg:col-span-1 h-fit"
 				headerClassName="text-primary__lighter border-secondary__light"
 				descriptionClassName="text-primary__lighter"
 			/>
-			<Carousel
-				className="col-span-2 relative flex items-center p-12"
-				setApi={setApi}
-			>
+			<Carousel className="lg:col-span-2 relative p-12 h-fit" setApi={setApi}>
 				<CarouselContent>
 					{properties.map(({ id, srcPath, altText, width, height }) => (
 						<CarouselItem key={id}>
