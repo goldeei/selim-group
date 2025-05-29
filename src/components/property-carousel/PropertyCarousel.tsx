@@ -97,10 +97,10 @@ export const PropertyCarousel = () => {
 					description={activeProperty.description}
 					className={cn(isMobile && "py-0")}
 					headerClassName={cn(
-						"text-primary__lighter border-secondary__light text-2xl md:3xl"
+						"text-primary__lighter border-secondary__light text-2xl md:text-3xl lg:text-4xl"
 					)}
 					descriptionClassName={cn(
-						"text-primary__lighter text-lg md:text-xl",
+						"text-primary__lighter text-lg md:text-xl lg:text-2xl",
 						isMobile && "text-lg",
 						isMobile && !isDescriptionOpen && "hidden"
 					)}
