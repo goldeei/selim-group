@@ -1,5 +1,7 @@
 "use client";
 
+import { useIsMobile } from "@/context/isMobileContext";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -48,6 +50,7 @@ const properties = [
 export const PropertyCarousel = () => {
 	const [activeProperty, setActiveProperty] = useState(properties[0]);
 	const [api, setApi] = useState<CarouselApi>();
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		if (api) {
@@ -57,21 +60,34 @@ export const PropertyCarousel = () => {
 		}
 	}, [api]);
 
-	useEffect(() => {
-		console.log(activeProperty);
-	}, [activeProperty]);
-
 	return (
-		<div className="h-fit grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 items-start lg:items-center">
+		<div
+			className={cn(
+				"relative grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 items-start lg:items-center",
+				isMobile ? "h-full" : "h-fit"
+			)}
+		>
 			<TextCard
 				key={activeProperty.id}
 				title={activeProperty.name}
 				description={activeProperty.description}
-				className="lg:col-span-1 h-fit"
-				headerClassName="text-primary__lighter border-secondary__light"
-				descriptionClassName="text-primary__lighter"
+				className={cn("lg:col-span-1", isMobile && "relative z-10")}
+				headerClassName={cn(
+					"text-primary__lighter border-secondary__light",
+					isMobile && "text-xl"
+				)}
+				descriptionClassName={cn(
+					"text-primary__lighter",
+					isMobile && "text-base"
+				)}
 			/>
-			<Carousel className="lg:col-span-2 relative p-12 h-fit" setApi={setApi}>
+			<Carousel
+				className={cn(
+					"lg:col-span-2 relative p-12",
+					isMobile && "absolute inset-0 p-0 h-full [&_div]:h-full"
+				)}
+				setApi={setApi}
+			>
 				<CarouselContent>
 					{properties.map(({ id, srcPath, altText, width, height }) => (
 						<CarouselItem key={id}>
@@ -80,7 +96,7 @@ export const PropertyCarousel = () => {
 								alt={altText}
 								width={width}
 								height={height}
-								className="size-full m-auto"
+								className={cn("size-full m-auto", isMobile && "object-cover")}
 							/>
 						</CarouselItem>
 					))}
