@@ -2,10 +2,13 @@
 
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
+import { ChevronUp } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { TextCard } from "../TextCard";
+import { Button } from "../ui/button";
 import {
 	Carousel,
 	CarouselApi,
@@ -51,6 +54,7 @@ export const PropertyCarousel = () => {
 	const [activeProperty, setActiveProperty] = useState(properties[0]);
 	const [api, setApi] = useState<CarouselApi>();
 	const isMobile = useIsMobile();
+	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
 	useEffect(() => {
 		if (api) {
@@ -64,23 +68,44 @@ export const PropertyCarousel = () => {
 		<div
 			className={cn(
 				"relative grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 items-start lg:items-center",
-				isMobile ? "h-full" : "h-fit"
+				isMobile ? "h-full grid-rows-1 " : "h-fit"
 			)}
 		>
-			<TextCard
-				key={activeProperty.id}
-				title={activeProperty.name}
-				description={activeProperty.description}
-				className={cn("lg:col-span-1", isMobile && "relative z-10")}
-				headerClassName={cn(
-					"text-primary__lighter border-secondary__light",
-					isMobile && "text-xl"
+			<motion.div
+				layout
+				className={cn(
+					"lg:col-span-1",
+					isMobile &&
+						"relative z-10 mt-auto bg-gradient-to-b from-transparent to-grey__darkest/50 to-grey__darkest/90 h-fit min-h-40 py-16 px-4",
+					isMobile && isDescriptionOpen ? "to-30%" : "to-60%"
 				)}
-				descriptionClassName={cn(
-					"text-primary__lighter",
-					isMobile && "text-base"
+			>
+				{isMobile && (
+					<div className="w-full flex justify-center items-center">
+						<Button
+							variant="ghost"
+							className="w-full text-secondary__light hover:bg-transparent hover:text-secondary__light"
+							onPointerDown={() => setIsDescriptionOpen(!isDescriptionOpen)}
+						>
+							<ChevronUp className="size-6" />
+						</Button>
+					</div>
 				)}
-			/>
+				<TextCard
+					key={activeProperty.id}
+					title={activeProperty.name}
+					description={activeProperty.description}
+					className={cn(isMobile && "py-0")}
+					headerClassName={cn(
+						"text-primary__lighter border-secondary__light text-2xl md:3xl"
+					)}
+					descriptionClassName={cn(
+						"text-primary__lighter text-lg md:text-xl",
+						isMobile && "text-lg",
+						isMobile && !isDescriptionOpen && "hidden"
+					)}
+				/>
+			</motion.div>
 			<Carousel
 				className={cn(
 					"lg:col-span-2 relative p-12",
@@ -101,8 +126,10 @@ export const PropertyCarousel = () => {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselButton dir="prev" />
-				<CarouselButton dir="next" />
+				<div className={cn(isMobile && "w-full max-h-fit absolute bottom-8")}>
+					<CarouselButton dir="prev" />
+					<CarouselButton dir="next" />
+				</div>
 			</Carousel>
 		</div>
 	);
