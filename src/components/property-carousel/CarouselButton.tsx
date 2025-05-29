@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { CarouselNext, CarouselPrevious } from "../ui/carousel";
 
 export const carouselButtonClasses =
-	"absolute bg-primary__lighter text-grey__darker border-primary__light border-1 hover:bg-primary__light";
+	"absolute z-20 bg-primary__lighter text-grey__darker border-primary__light border-1 hover:bg-primary__light";
 
 interface CarouselButtonProps {
 	dir: "prev" | "next";
