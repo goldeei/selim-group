@@ -9,9 +9,8 @@ import {
 	CarouselApi,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from "../ui/carousel";
+import { CarouselButton } from "./CarouselButton";
 
 const properties = [
 	{
@@ -89,8 +88,8 @@ export const PropertyCarousel = () => {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious className="absolute left-2" />
-				<CarouselNext className="absolute right-2" />
+				<CarouselButton dir="prev" />
+				<CarouselButton dir="next" />
 			</Carousel>
 		</div>
 	);
