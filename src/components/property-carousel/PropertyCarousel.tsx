@@ -3,11 +3,10 @@
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
 import { ChevronUp } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { TextCard } from "../TextCard";
 import { Button } from "../ui/button";
 import {
 	Carousel,
@@ -50,6 +49,8 @@ const properties = [
 	},
 ];
 
+const animationTransition = { duration: 0.3, ease: "easeOut" };
+
 export const PropertyCarousel = () => {
 	const [activeProperty, setActiveProperty] = useState(properties[0]);
 	const [api, setApi] = useState<CarouselApi>();
@@ -72,11 +73,11 @@ export const PropertyCarousel = () => {
 			)}
 		>
 			<motion.div
-				layout
+				layout="preserve-aspect"
 				className={cn(
-					"lg:col-span-1",
+					"lg:col-span-1 relative",
 					isMobile &&
-						"relative z-10 mt-auto bg-gradient-to-b from-transparent to-grey__darkest/50 to-grey__darkest/90 h-fit min-h-40 py-16 px-4",
+						"relative z-10 mt-auto bg-gradient-to-b from-transparent to-grey__darkest/50 to-grey__darkest/90 h-fit min-h-40 p-8",
 					isMobile && isDescriptionOpen ? "to-30%" : "to-60%"
 				)}
 			>
@@ -91,20 +92,46 @@ export const PropertyCarousel = () => {
 						</Button>
 					</div>
 				)}
-				<TextCard
-					key={activeProperty.id}
-					title={activeProperty.name}
-					description={activeProperty.description}
-					className={cn(isMobile && "py-0")}
-					headerClassName={cn(
-						"text-primary__lighter border-secondary__light text-2xl md:text-3xl lg:text-4xl"
+				<div
+					className={cn(
+						"border-b-3 mb-4 border-secondary__light",
+						isMobile && "py-0"
 					)}
-					descriptionClassName={cn(
-						"text-primary__lighter text-lg md:text-xl lg:text-2xl",
-						isMobile && "text-lg",
-						isMobile && !isDescriptionOpen && "hidden"
-					)}
-				/>
+				>
+					<motion.h3
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						key={activeProperty.name}
+						className={cn(
+							"text-primary__lighter text-2xl md:text-3xl lg:text-4xl pb-2"
+						)}
+						transition={{ duration: 0.8 }}
+					>
+						{activeProperty.name}
+					</motion.h3>
+				</div>
+				<motion.div
+					initial={false}
+					animate={{
+						height: !isMobile || isDescriptionOpen ? "auto" : 0,
+						opacity: !isMobile || isDescriptionOpen ? 1 : 0,
+					}}
+					transition={animationTransition}
+					className="overflow-hidden"
+				>
+					<motion.div
+						initial={isMobile ? { y: 20 } : undefined}
+						animate={{ y: 0 }}
+						exit={isMobile ? { y: -10 } : undefined}
+						transition={animationTransition}
+						className={cn(
+							"text-primary__lighter text-lg md:text-xl lg:text-2xl",
+							isMobile && "text-lg"
+						)}
+					>
+						{activeProperty.description}
+					</motion.div>
+				</motion.div>
 			</motion.div>
 			<Carousel
 				className={cn(
@@ -126,10 +153,18 @@ export const PropertyCarousel = () => {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<div className={cn(isMobile && "w-full max-h-fit absolute bottom-8")}>
-					<CarouselButton dir="prev" />
-					<CarouselButton dir="next" />
-				</div>
+				<AnimatePresence>
+					{!isDescriptionOpen && (
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+						>
+							<CarouselButton dir="prev" />
+							<CarouselButton dir="next" />
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</Carousel>
 		</div>
 	);
