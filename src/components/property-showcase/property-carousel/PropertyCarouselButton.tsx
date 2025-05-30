@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-import { CarouselNext, CarouselPrevious } from "../ui/carousel";
+import { CarouselNext, CarouselPrevious } from "../../ui/carousel";
 
 export const carouselButtonClasses =
 	"z-20 bg-primary__lighter text-grey__darker border-primary__light border-1 hover:bg-primary__light";

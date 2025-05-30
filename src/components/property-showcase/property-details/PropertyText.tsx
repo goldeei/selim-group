@@ -1,0 +1,125 @@
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ChevronUp } from "lucide-react";
+import { motion } from "motion/react";
+
+import { Property } from "../types";
+
+interface PropertyTextProps {
+	activeProperty: Property;
+	isMobile: boolean;
+	isDescriptionOpen: boolean;
+	setIsDescriptionOpen: (isOpen: boolean) => void;
+}
+
+const styles = {
+	container: {
+		base: "lg:col-span-1 relative",
+		mobile:
+			"relative z-10 mt-auto bg-gradient-to-b from-transparent h-fit min-h-40 p-8",
+		mobileGradientCollapsed: "to-grey__darkest/50 to-grey__darkest/90 to-60%",
+		mobileGradientExpanded: "to-grey__darkest/50 to-grey__darkest/90 to-30%",
+	},
+	toggleButton: {
+		wrapper: "w-full flex justify-center items-center",
+		button:
+			"w-full text-secondary__light hover:bg-transparent hover:text-secondary__light",
+		icon: "size-6",
+	},
+	titleSection: {
+		base: "border-b-3 mb-4 border-secondary__light",
+		mobile: "py-0",
+	},
+	title: {
+		base: "text-primary__lighter text-2xl pb-2",
+		responsive: "md:text-3xl lg:text-4xl",
+	},
+	description: {
+		container: "overflow-hidden",
+		text: {
+			base: "text-primary__lighter text-lg",
+			desktop: "md:text-xl lg:text-2xl",
+			mobile: "text-lg",
+		},
+	},
+} as const;
+
+const animations = {
+	title: { duration: 0.8 },
+	description: { duration: 0.3, ease: "easeOut" as const },
+	descriptionText: { duration: 0.3, ease: "easeOut" as const },
+} as const;
+
+export const PropertyText = (props: PropertyTextProps) => {
+	const { activeProperty, isMobile, isDescriptionOpen, setIsDescriptionOpen } =
+		props;
+
+	return (
+		<motion.div
+			layout="preserve-aspect"
+			className={cn(
+				styles.container.base,
+				isMobile && [
+					styles.container.mobile,
+					isDescriptionOpen
+						? styles.container.mobileGradientExpanded
+						: styles.container.mobileGradientCollapsed,
+				]
+			)}
+		>
+			{/* Toggle */}
+			{isMobile && (
+				<div className={styles.toggleButton.wrapper}>
+					<Button
+						variant="ghost"
+						className={styles.toggleButton.button}
+						onPointerDown={() => setIsDescriptionOpen(!isDescriptionOpen)}
+					>
+						<ChevronUp className={styles.toggleButton.icon} />
+					</Button>
+				</div>
+			)}
+			{/* Header */}
+			<div
+				className={cn(
+					styles.titleSection.base,
+					isMobile && styles.titleSection.mobile
+				)}
+			>
+				<motion.h3
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					key={activeProperty.name}
+					className={cn(styles.title.base, styles.title.responsive)}
+					transition={animations.title}
+				>
+					{activeProperty.name}
+				</motion.h3>
+			</div>
+			{/* Description */}
+			<motion.div
+				initial={false}
+				animate={{
+					height: !isMobile || isDescriptionOpen ? "auto" : 0,
+					opacity: !isMobile || isDescriptionOpen ? 1 : 0,
+				}}
+				transition={animations.description}
+				className={styles.description.container}
+			>
+				<motion.div
+					initial={isMobile ? { y: 20 } : undefined}
+					animate={{ y: 0 }}
+					exit={isMobile ? { y: -10 } : undefined}
+					transition={animations.descriptionText}
+					className={cn(
+						styles.description.text.base,
+						!isMobile && styles.description.text.desktop,
+						isMobile && styles.description.text.mobile
+					)}
+				>
+					{activeProperty.description}
+				</motion.div>
+			</motion.div>
+		</motion.div>
+	);
+};
