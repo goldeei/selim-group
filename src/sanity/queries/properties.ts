@@ -1,14 +1,21 @@
 import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { defineQuery } from "next-sanity";
 
-import { PropertyPage } from "../../../studio-selim-group/sanity.types";
+import {
+	PropertyPage,
+	SanityImageAsset,
+} from "../../../studio-selim-group/sanity.types";
 import { IMAGE_FRAGMENT } from "./fragments";
 import { SanityTypes } from "./index";
 
 // PROPERTY
 type PropertyQueryResult = Omit<SanityTypes.Property, "image"> & {
 	_id: string; // GROQ always adds _id
-	image: SanityImageObject | null;
+	image:
+		| (SanityImageObject & {
+				asset: SanityImageAsset | null;
+		  })
+		| null;
 };
 
 // Base query for all properties with complete image data
