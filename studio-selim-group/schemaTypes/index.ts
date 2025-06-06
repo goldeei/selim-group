@@ -1,5 +1,6 @@
 import {landingPage} from './landingPage'
 import {property} from './property'
+import propertyPage from './propertyPage'
 import {service} from './service'
 
-export const schemaTypes = [landingPage, service, property]
+export const schemaTypes = [landingPage, service, property, propertyPage]

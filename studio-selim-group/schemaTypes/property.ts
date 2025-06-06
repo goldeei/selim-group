@@ -3,7 +3,7 @@ import {defineType} from 'sanity'
 export const property = defineType({
   name: 'property',
   title: 'Property',
-  type: 'document',
+  type: 'object',
   fields: [
     {
       name: 'image',
