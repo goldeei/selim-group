@@ -1,6 +1,6 @@
 export const IMAGE_FRAGMENT = `image {
       _type,
-      asset {
+      asset-> {
         _id,
         _type,
         url,
