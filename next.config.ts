@@ -3,6 +3,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
 
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "cdn.sanity.io",
+				port: "",
+				pathname: "/images/**",
+			},
+		],
+	},
+
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
@@ -20,7 +31,7 @@ const nextConfig: NextConfig = {
 							plugins: [
 								{
 									name: "preset-default",
-									params: { overrides: { removeViewBox: true } },
+									params: { overrides: { removeViewBox: false } },
 								},
 							],
 						},
