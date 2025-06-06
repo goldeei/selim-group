@@ -67,11 +67,11 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 			setApi={setApi}
 		>
 			<CarouselContent>
-				{properties.map(({ id, srcPath, altText, width, height }) => (
+				{properties.map(({ id, image, altText, width, height }) => (
 					<CarouselItem key={id}>
 						<SanityImage
-							src={srcPath}
-							hotspotCrop={isMobile ? "3:4" : "16:9"}
+							image={image}
+							aspectRatio={isMobile ? "3:4" : "16:9"}
 							alt={altText}
 							width={width}
 							height={height}
