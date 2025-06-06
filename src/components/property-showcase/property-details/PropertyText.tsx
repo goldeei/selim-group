@@ -16,7 +16,7 @@ const styles = {
 	container: {
 		base: "lg:col-span-1 relative",
 		mobile:
-			"relative z-10 mt-auto bg-gradient-to-b from-transparent h-fit min-h-40 p-8",
+			"absolute bottom-0 z-10 mt-auto bg-gradient-to-b from-transparent h-fit min-h-40 p-8",
 		mobileGradientCollapsed: "to-grey__darkest/50 to-grey__darkest/90 to-60%",
 		mobileGradientExpanded: "to-grey__darkest/50 to-grey__darkest/90 to-30%",
 	},
@@ -109,7 +109,7 @@ export const PropertyText = (props: PropertyTextProps) => {
 				<motion.div
 					initial={isMobile ? { y: 20 } : undefined}
 					animate={{ y: 0 }}
-					exit={isMobile ? { y: -10 } : undefined}
+					exit={isMobile ? { y: -20 } : undefined}
 					transition={animations.descriptionText}
 					className={cn(
 						styles.description.text.base,

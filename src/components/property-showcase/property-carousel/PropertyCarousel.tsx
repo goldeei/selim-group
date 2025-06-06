@@ -24,14 +24,14 @@ interface PropertyCarouselProps {
 const styles = {
 	carousel: {
 		base: "lg:col-span-2 relative p-12",
-		mobile: "absolute inset-0 p-0 h-full [&_div]:h-full",
+		mobile: "inset-0 p-0 h-full [&_div]:h-full",
 		mobileDisabled: "pointer-events-none",
 	},
 	image: {
 		base: "size-full m-auto aspect-[16/9]",
 		mobile: "object-cover aspect-[3/4]",
 	},
-	buttonContainer: "",
+	buttonContainer: "max-h-0",
 } as const;
 
 const animations = {
