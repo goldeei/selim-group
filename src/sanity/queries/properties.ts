@@ -1,63 +1,89 @@
+import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { defineQuery } from "next-sanity";
 
+import { PropertyPage } from "../../../studio-selim-group/sanity.types";
+import { IMAGE_FRAGMENT } from "./fragments";
 import { SanityTypes } from "./index";
 
-type PropertyQueryResult = {
-	_id: string;
-	title: string | null;
-	description: string | null;
-	altText: string | null;
-	image: {
-		asset: {
-			_id: string;
-			url: string;
-			metadata: {
-				dimensions: {
-					width: number;
-					height: number;
-				} | null;
-			} | null;
-		} | null;
-		hotspot: SanityTypes.SanityImageHotspot | null;
-		crop: SanityTypes.SanityImageCrop | null;
-	} | null;
+// PROPERTY
+type PropertyQueryResult = Omit<SanityTypes.Property, "image"> & {
+	_id: string; // GROQ always adds _id
+	image: SanityImageObject | null;
 };
 
+// Base query for all properties with complete image data
 const PROPERTIES_QUERY = defineQuery(`
-  *[_type == "property"] {
+  *[_type == "property"] | order(_createdAt desc) {
     _id,
     title,
     description,
     altText,
-    image {
-      _type,
-      asset-> {
-        _id,
-        _type,
-        url,
-        metadata {
-          dimensions {
-            width,
-            height
-          },
-          lqip,
-          blurHash
-        }
-      },
-      hotspot {
-        x,
-        y,
-        height,
-        width
-      },
-      crop {
-        top,
-        bottom,
-        left,
-        right
-      }
+    ${IMAGE_FRAGMENT}
+  }
+`);
+
+// Search query for properties with complete image data
+const PROPERTIES_SEARCH_QUERY = defineQuery(`
+  *[_type == "property" && (
+    title match $searchTerm + "*" ||
+    description match $searchTerm + "*" ||
+    altText match $searchTerm + "*"
+  )] | order(_createdAt desc) {
+    _id,
+    title,
+    description,
+    altText,
+    ${IMAGE_FRAGMENT}
+  }
+`);
+
+// Single property query with complete image data
+const PROPERTY_BY_ID_QUERY = defineQuery(`
+  *[_type == "property" && _id == $id][0] {
+    _id,
+    title,
+    description,
+    altText,
+    ${IMAGE_FRAGMENT}
+  }
+`);
+
+// PROPERTY PAGE
+type PropertyPageQueryResult = PropertyPage & {
+	properties: PropertyQueryResult[]; // Dereferenced by GROQ `properties[]->`
+};
+
+const PROPERTY_PAGE_QUERY = defineQuery(`
+  *[_type == "propertyPage" && title == $pageTitle][0] {
+    _id,
+    title,
+    description,
+    properties[]-> {
+      _id,
+      title,
+      description,
+      altText,
+     ${IMAGE_FRAGMENT}
     }
   }
 `);
 
-export { PROPERTIES_QUERY, type PropertyQueryResult };
+// Get all property pages (for navigation/listing)
+const PROPERTY_PAGES_QUERY = defineQuery(`
+  *[_type == "propertyPage"] | order(title asc) {
+    _id,
+    title,
+    description,
+    "propertyCount": count(properties)
+  }
+`);
+
+export {
+	PROPERTIES_QUERY,
+	PROPERTIES_SEARCH_QUERY,
+	PROPERTY_BY_ID_QUERY,
+	PROPERTY_PAGE_QUERY,
+	PROPERTY_PAGES_QUERY,
+	type PropertyPageQueryResult,
+	type PropertyQueryResult,
+};
