@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { PropertyCarousel } from "./property-carousel";
 import { PropertyText } from "./property-details/PropertyText";
-import { properties } from "./testData";
+import { Property } from "./types";
 
 const styles = {
 	base: "h-fit relative grid grid-cols-1 grid-rows-[auto_1fr] items-start",
@@ -14,7 +14,11 @@ const styles = {
 	mobile: "h-full grid-rows-1",
 };
 
-export const PropertyShowcase = () => {
+export const PropertyShowcase = ({
+	properties,
+}: {
+	properties: Property[];
+}) => {
 	const [activeProperty, setActiveProperty] = useState(properties[0]);
 	const isMobile = useIsMobile();
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
