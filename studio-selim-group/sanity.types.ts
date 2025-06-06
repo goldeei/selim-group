@@ -74,12 +74,25 @@ export type Slug = {
   source?: string
 }
 
-export type Property = {
+export type PropertyPage = {
   _id: string
-  _type: 'property'
+  _type: 'propertyPage'
   _createdAt: string
   _updatedAt: string
   _rev: string
+  title?: string
+  description?: string
+  properties?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'property'
+  }>
+}
+
+export type Property = {
+  _type: 'property'
   image?: {
     asset?: {
       _ref: string
@@ -188,6 +201,7 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | Slug
+  | PropertyPage
   | Property
   | SanityImageCrop
   | SanityImageHotspot
