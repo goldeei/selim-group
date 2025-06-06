@@ -6,9 +6,9 @@ import {
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel";
+import { SanityImage } from "@/components/ui/SanityImage";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Property } from "../types";
@@ -28,8 +28,8 @@ const styles = {
 		mobileDisabled: "pointer-events-none",
 	},
 	image: {
-		base: "size-full m-auto",
-		mobile: "object-cover",
+		base: "size-full m-auto aspect-[16/9]",
+		mobile: "object-cover aspect-[3/4]",
 	},
 	buttonContainer: "",
 } as const;
@@ -69,8 +69,9 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 			<CarouselContent>
 				{properties.map(({ id, srcPath, altText, width, height }) => (
 					<CarouselItem key={id}>
-						<Image
+						<SanityImage
 							src={srcPath}
+							hotspotCrop={isMobile ? "3:4" : "16:9"}
 							alt={altText}
 							width={width}
 							height={height}
