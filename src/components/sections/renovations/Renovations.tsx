@@ -8,12 +8,12 @@ export const Renovations = async () => {
 
 	const properties: Property[] = data.map((property: PropertyQueryResult) => ({
 		id: property._id,
-		srcPath: property.imageUrl,
-		altText: property.altText,
-		name: property.title,
-		description: property.description,
-		width: property.imageMetadata?.dimensions?.width ?? 800,
-		height: property.imageMetadata?.dimensions?.height ?? 600,
+		image: property.image,
+		altText: property.altText || "",
+		name: property.title || "",
+		description: property.description || "",
+		width: property.image?.asset?.metadata?.dimensions?.width ?? 800,
+		height: property.image?.asset?.metadata?.dimensions?.height ?? 600,
 	}));
 
 	return (
