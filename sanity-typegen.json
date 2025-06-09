@@ -1,8 +1,0 @@
-{
-	"schema": "./studio-selim-group/schema.json",
-	"generates": {
-		"./src/sanity/types.ts": {
-			"generator": "@sanity/codegen/typescript"
-		}
-	}
-}
