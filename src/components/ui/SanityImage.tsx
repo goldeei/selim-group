@@ -1,15 +1,15 @@
 import { urlFor } from "@/lib/imageUtils";
-import { SanityImageObject } from "@sanity/image-url/lib/types/types";
+import { ImageQueryResult } from "@/types/query-results";
 import Image, { ImageProps } from "next/image";
 
-const ASPECT_RATIOS: Record<string, number> = {
+type AspectRatio = "3:4" | "16:9" | "1:1" | "21:9";
+
+const ASPECT_RATIOS: Record<AspectRatio, number> = {
 	"3:4": 4 / 3, // Portrait mobile
 	"16:9": 9 / 16, // Landscape desktop
 	"1:1": 1, // Square
 	"21:9": 9 / 21, // Ultra-wide panorama
 } as const;
-
-type AspectRatio = keyof typeof ASPECT_RATIOS;
 
 /**
  * Calculate target dimensions based on aspect ratio
@@ -29,10 +29,7 @@ const calculateDimensions = (
 };
 
 interface SanityImageProps extends Omit<ImageProps, "src"> {
-	image: SanityImageObject; // Sanity image object
-	alt: string;
-	width?: number;
-	height?: number;
+	image: ImageQueryResult;
 	aspectRatio?: AspectRatio;
 }
 
@@ -40,11 +37,16 @@ interface SanityImageProps extends Omit<ImageProps, "src"> {
  * Optimized Sanity image component with responsive aspect ratios and hotspot support
  */
 export const SanityImage = (props: SanityImageProps) => {
-	const { image, alt, width, height, aspectRatio, ...rest } = props;
+	const { image, alt, aspectRatio, ...rest } = props;
 
 	if (!image) {
 		return null;
 	}
+
+	const { width, height } = image.asset?.metadata?.dimensions ?? {
+		width: 800,
+		height: 600,
+	};
 
 	// Build the image URL using urlFor
 	let imageBuilder = urlFor(image).auto("format").fit("crop");
