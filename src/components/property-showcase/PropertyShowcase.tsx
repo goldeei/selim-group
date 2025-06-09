@@ -2,11 +2,11 @@
 
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
+import { Property } from "@/types/property";
 import { useState } from "react";
 
 import { PropertyCarousel } from "./property-carousel";
 import { PropertyText } from "./property-details/PropertyText";
-import { Property } from "./types";
 
 const styles = {
 	base: "h-fit relative grid grid-cols-1 grid-rows-[auto_1fr] items-start",
