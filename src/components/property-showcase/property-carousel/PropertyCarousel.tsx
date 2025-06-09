@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/carousel";
 import { SanityImage } from "@/components/ui/SanityImage";
 import { cn } from "@/lib/utils";
+import { Property } from "@/types/property";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { Property } from "../types";
 import { CarouselButton } from "./PropertyCarouselButton";
 
 interface PropertyCarouselProps {
@@ -67,14 +67,12 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 			setApi={setApi}
 		>
 			<CarouselContent>
-				{properties.map(({ id, image, altText, width, height }) => (
-					<CarouselItem key={id}>
+				{properties.map(({ _id, image, altText }) => (
+					<CarouselItem key={_id}>
 						<SanityImage
 							image={image}
 							aspectRatio={isMobile ? "3:4" : "16:9"}
 							alt={altText}
-							width={width}
-							height={height}
 							className={cn(styles.image.base, isMobile && styles.image.mobile)}
 						/>
 					</CarouselItem>
