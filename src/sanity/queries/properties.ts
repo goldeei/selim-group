@@ -1,22 +1,6 @@
-import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 import { defineQuery } from "next-sanity";
 
-import {
-	PropertyPage,
-	SanityImageAsset,
-} from "../../../studio-selim-group/sanity.types";
 import { IMAGE_FRAGMENT } from "./fragments";
-import { SanityTypes } from "./index";
-
-// PROPERTY
-type PropertyQueryResult = Omit<SanityTypes.Property, "image"> & {
-	_id: string; // GROQ always adds _id
-	image:
-		| (SanityImageObject & {
-				asset: SanityImageAsset | null;
-		  })
-		| null;
-};
 
 // Base query for all properties with complete image data
 const PROPERTIES_QUERY = defineQuery(`
@@ -55,11 +39,6 @@ const PROPERTY_BY_ID_QUERY = defineQuery(`
   }
 `);
 
-// PROPERTY PAGE
-type PropertyPageQueryResult = PropertyPage & {
-	properties: PropertyQueryResult[]; // Dereferenced by GROQ `properties[]->`
-};
-
 const PROPERTY_PAGE_QUERY = defineQuery(`
   *[_type == "propertyPage" && title == $pageTitle][0] {
     _id,
@@ -91,6 +70,4 @@ export {
 	PROPERTY_BY_ID_QUERY,
 	PROPERTY_PAGE_QUERY,
 	PROPERTY_PAGES_QUERY,
-	type PropertyPageQueryResult,
-	type PropertyQueryResult,
 };
