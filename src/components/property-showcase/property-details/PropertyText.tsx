@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Property } from "@/types/property";
 import { ChevronUp } from "lucide-react";
 import { motion } from "motion/react";
-
-import { Property } from "../types";
 
 interface PropertyTextProps {
 	activeProperty: Property;
@@ -89,11 +88,11 @@ export const PropertyText = (props: PropertyTextProps) => {
 				<motion.h3
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					key={activeProperty.name}
+					key={activeProperty.title}
 					className={cn(styles.title.base, styles.title.responsive)}
 					transition={animations.title}
 				>
-					{activeProperty.name}
+					{activeProperty.title}
 				</motion.h3>
 			</div>
 			{/* Description */}
