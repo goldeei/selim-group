@@ -5,26 +5,11 @@ export const IMAGE_FRAGMENT = `image {
         _type,
         url,
         metadata {
-          dimensions {
-            width,
-            height
-          },
+          dimensions,
           lqip,
           blurHash
         }
       },
-      hotspot {
-        _type,
-        x,
-        y,
-        height,
-        width
-      },
-      crop {
-        _type,
-        top,
-        bottom,
-        left,
-        right
-      }
-    }`;
+      hotspot, 
+      crop 
+    }` as const;
