@@ -1,3 +1,4 @@
+import { Section } from "@/components/common/section";
 import { PropertyShowcase } from "@/components/property-showcase";
 import { sanityFetch } from "@/sanity/live";
 import { PROPERTIES_QUERY } from "@/sanity/queries";
@@ -9,12 +10,12 @@ export const Renovations = async () => {
 	});
 
 	return (
-		<section
+		<Section
 			id="renovations"
-			className="h-screen min-h-fit flex flex-col bg-grey__darker"
+			className="flex flex-col bg-grey__darker h-screen"
 		>
 			<h2 className="responsive mb-4 text-grey__lightest">Renovations</h2>
 			<PropertyShowcase properties={data} />
-		</section>
+		</Section>
 	);
 };
