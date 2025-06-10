@@ -2,7 +2,7 @@
 
 import { useIsMobile } from "@/context/isMobileContext";
 
-const classes = "text-primary__lighter tracking-widest responsive";
+const styles = "text-primary__lighter tracking-widest responsive";
 
 interface LandingPageSubtitle {
 	subtitle: string;
@@ -12,8 +12,8 @@ export const LandingPageSubtitle = (props: LandingPageSubtitle) => {
 
 	const isMobile = useIsMobile();
 	return isMobile ? (
-		<h4 className={classes}>{subtitle}</h4>
+		<h4 className={styles}>{subtitle}</h4>
 	) : (
-		<h2 className={classes}>{subtitle}</h2>
+		<h2 className={styles}>{subtitle}</h2>
 	);
 };

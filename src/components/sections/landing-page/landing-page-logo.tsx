@@ -1,17 +1,23 @@
 "use client";
 
-import { SVGProps, useMemo } from "react";
-
 import DesktopSVG from "@/app/assets/svgs/landing-page__desktop.svg";
 import MobileSVG from "@/app/assets/svgs/landing-page__mobile.svg";
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
+import { SVGProps, useMemo } from "react";
+
+const styles = {
+	logo: {
+		base: "h-fit w-full max-w-xl",
+		mobile: "w-4/5",
+	},
+} as const;
 
 export const LandingPageLogo = (props: SVGProps<SVGSVGElement>) => {
 	const isMobile = useIsMobile();
 	const logoProps = useMemo(
 		() => ({
-			className: cn("h-fit w-full max-w-xl", isMobile && "w-4/5"),
+			className: cn(styles.logo.base, isMobile && styles.logo.mobile),
 			preserveAspectRatio: "xMidYMid meet",
 			...props,
 		}),
