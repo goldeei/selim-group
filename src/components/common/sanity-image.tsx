@@ -37,7 +37,7 @@ interface SanityImageProps extends Omit<ImageProps, "src"> {
  * Optimized Sanity image component with responsive aspect ratios and hotspot support
  */
 export const SanityImage = (props: SanityImageProps) => {
-	const { image, alt, aspectRatio, ...rest } = props;
+	const { image, alt, aspectRatio, fill, ...rest } = props;
 
 	if (!image) {
 		return null;
@@ -77,6 +77,13 @@ export const SanityImage = (props: SanityImageProps) => {
 	}
 
 	return (
-		<Image {...rest} src={imageUrl} alt={alt} width={width} height={height} />
+		<Image
+			{...rest}
+			src={imageUrl}
+			alt={alt}
+			width={fill ? undefined : width}
+			height={fill ? undefined : height}
+			fill={fill}
+		/>
 	);
 };
