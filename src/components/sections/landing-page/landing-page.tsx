@@ -1,18 +1,15 @@
 import LandingPageFooter from "@/app/assets/svgs/landing-page-footer.svg";
 import { sanityFetch } from "@/sanity/live";
-import { defineQuery } from "next-sanity";
+import { LANDING_PAGE_QUERY } from "@/sanity/queries";
 
 import { Separator } from "../../ui/Separator";
 import { LandingPageLogo } from "./landing-page-logo";
 import { LandingPageSubtitle } from "./landing-page-subtitle";
 
-const SUBTITLE_QUERY = defineQuery(`*[
-  _type == "landingPage" 
-  && defined(subtitle)
-][0].subtitle`);
-
 export const LandingPage = async () => {
-	const { data: subtitle } = await sanityFetch({ query: SUBTITLE_QUERY });
+	const { data: subtitle } = await sanityFetch({
+		query: LANDING_PAGE_QUERY.subtitle,
+	});
 
 	return (
 		<div className="relative -z-10 bg-primary h-screen flex flex-col justify-center items-center overflow-hidden">
