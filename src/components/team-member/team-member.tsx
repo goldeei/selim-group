@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { TeamMember as TeamMemberType } from "@/types/team";
 
 import { SanityImage } from "../common";
@@ -7,13 +8,16 @@ interface TeamMemberProps {
 }
 
 const styles = {
-	container: "relative z-0 flex justify-between gap-12",
+	container: {
+		base: "relative z-0 flex flex-col justify-between gap-12",
+		md: "sm:flex-row",
+	},
 	image: {
-		container: "relative flex-shrink-0",
-		wrapper: "w-72 h-96",
+		container: "flex-shrink-0 flex justify-center",
+		wrapper: "relative w-full max-w-72",
 		image: "relative z-10 object-cover w-full h-full rounded-xs",
 		underlay:
-			"absolute w-full h-full -bottom-1.5 -left-1.5 bg-primary__light/50 rounded-xs",
+			"absolute w-full max-w-72 h-full -bottom-1.5 -left-1.5 bg-primary__light/50 rounded-xs",
 	},
 	content: {
 		container: "flex flex-col p-4 flex-1",
@@ -26,7 +30,7 @@ export const TeamMember = (props: TeamMemberProps) => {
 	const { _id, name, description, certifications, image } = props.teamMember;
 
 	return (
-		<div key={_id} className={styles.container}>
+		<div key={_id} className={cn(styles.container.base, styles.container.md)}>
 			<div className={styles.image.container}>
 				<div className={styles.image.wrapper}>
 					<SanityImage
@@ -34,10 +38,9 @@ export const TeamMember = (props: TeamMemberProps) => {
 						alt={name}
 						aspectRatio="3:4"
 						className={styles.image.image}
-						fill
 					/>
+					<div className={styles.image.underlay} />
 				</div>
-				<div className={styles.image.underlay} />
 			</div>
 			<div className={styles.content.container}>
 				<h3>{name}</h3>
