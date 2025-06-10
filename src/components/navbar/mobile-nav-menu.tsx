@@ -1,12 +1,15 @@
 import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { MenuIcon } from "lucide-react";
 import React, { useState } from "react";
 
 import { Button } from "../ui/button";
-import { NavMenuItemProps } from "./NavBar";
+import { NavMenuItemProps } from "./types";
 
 interface MobileNavMenuProps {
 	children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { NavBar } from "@/components/navbar/NavBar";
+import { NavBar } from "@/components/navbar";
 import { AppProviders } from "@/context/AppProviders";
 import { SanityLive } from "@/sanity/live";
 import { Bebas_Neue, Oswald } from "next/font/google";

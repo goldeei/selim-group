@@ -1,8 +1,8 @@
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
 
-import { NavMenuItemName, NavMenuItemProps } from "./NavBar";
-import { NavMenuItem } from "./NavMenuItem";
+import { NavMenuItem } from "./nav-menu-item";
+import { NavMenuItemName, NavMenuItemProps } from "./types";
 
 interface NavMenuProps {
 	navMenuItems: NavMenuItemProps[];

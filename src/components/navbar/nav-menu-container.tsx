@@ -1,6 +1,6 @@
 import { useIsMobile } from "@/context/isMobileContext";
 
-import { MobileNavMenu } from "./MobileNavMenu";
+import { MobileNavMenu } from "./mobile-nav-menu";
 
 interface NavMenuContainerProps {
 	children: React.ReactNode;
