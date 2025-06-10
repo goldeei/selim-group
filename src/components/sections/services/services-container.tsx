@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-import { ServiceDescriptionContainer } from "./ServiceDescriptionContainer";
-import { ServiceToggle } from "./ServiceToggle";
+import { ServiceDescriptionContainer } from "./service-description-container";
+import { ServiceToggle } from "./service-toggle";
 import { ServiceItem } from "./types";
 
 interface ServicesContainerProps {

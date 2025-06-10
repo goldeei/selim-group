@@ -1,14 +1,10 @@
 import {
-	Dumpster,
-	InteriorDemolition,
-	InteriorRenovation,
-	LicensedRealtors,
-	RealEstateInvestment,
+    Dumpster, InteriorDemolition, InteriorRenovation, LicensedRealtors, RealEstateInvestment
 } from "@/app/assets/svgs";
 import { sanityFetch } from "@/sanity/live";
-import { defineQuery } from "next-sanity";
+import { SERVICES_QUERY } from "@/sanity/queries";
 
-import { ServicesContainer } from "./ServicesContainer";
+import { ServicesContainer } from "./services-container";
 import { ServiceItem } from "./types";
 
 type IconKey = keyof typeof iconMap;
@@ -21,12 +17,8 @@ const iconMap = {
 	InteriorRenovation: <InteriorRenovation />,
 } as const;
 
-const SERVICES_QUERY = defineQuery(`*[
-  _type == "service"
-] | order(orderRank asc)`);
-
 export const Services = async () => {
-	const { data } = await sanityFetch({ query: SERVICES_QUERY });
+	const { data } = await sanityFetch({ query: SERVICES_QUERY.all });
 
 	const services = data.map((service: ServiceItem) => ({
 		id: service.id,
