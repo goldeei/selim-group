@@ -25,7 +25,7 @@ export const LandingPage = async () => {
 				<Separator />
 				<LandingPageSubtitle subtitle={subtitle} />
 			</div>
-			<LandingPageFooter className="mt-auto translate-y-0.5" />
+			<LandingPageFooter className="w-[110%] mt-auto" />
 		</div>
 	);
 };
