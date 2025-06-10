@@ -1,5 +1,5 @@
 import { LandingPage } from "@/components/sections/landing-page";
-import { Renovations } from "@/components/sections/renovations/Renovations";
+import { Renovations } from "@/components/sections/renovations";
 import { Services } from "@/components/sections/services/Services";
 
 export default function Home() {
