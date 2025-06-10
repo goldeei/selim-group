@@ -1,4 +1,4 @@
-import { LandingPage } from "@/components/sections/landing-page/LandingPage";
+import { LandingPage } from "@/components/sections/landing-page";
 import { Renovations } from "@/components/sections/renovations/Renovations";
 import { Services } from "@/components/sections/services/Services";
 

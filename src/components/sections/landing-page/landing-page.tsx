@@ -3,8 +3,8 @@ import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
 
 import { Separator } from "../../ui/Separator";
-import { LandingPageLogo } from "./LandingPageLogo";
-import { LandingPageSubtitle } from "./LandingPageSubtitle";
+import { LandingPageLogo } from "./landing-page-logo";
+import { LandingPageSubtitle } from "./landing-page-subtitle";
 
 const SUBTITLE_QUERY = defineQuery(`*[
   _type == "landingPage" 
