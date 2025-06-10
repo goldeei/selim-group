@@ -15,6 +15,12 @@ interface NavMenuItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	isMobile: boolean;
 }
 
+const styles = {
+	container: "relative flex items-center",
+	link: "font-heading block leading-8",
+	activeIndicator: "absolute bg-secondary rounded opacity-0",
+} as const;
+
 const variants = (isMobile: boolean, isActive: boolean) => {
 	const props: Variants = {};
 	props.animate = { opacity: isActive ? 1 : 0.5 };
@@ -28,20 +34,17 @@ const variants = (isMobile: boolean, isActive: boolean) => {
 	}
 	return props;
 };
+
 export const NavMenuItem = (props: NavMenuItemProps) => {
 	const { id, className, children, href, isActive, onPointerDown, isMobile } =
 		props;
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<li className="relative flex items-center">
+		<li className={styles.container}>
 			<motion.a
 				id={`${id}-link`}
-				className={cn(
-					"font-heading block leading-8",
-					isMobile && "ms-2",
-					className
-				)}
+				className={cn(styles.link, isMobile && "ms-2", className)}
 				href={href}
 				aria-current={href === window.location.hash ? "page" : undefined}
 				onPointerEnter={() => setIsHovered(true)}
@@ -57,7 +60,7 @@ export const NavMenuItem = (props: NavMenuItemProps) => {
 			{isActive || isHovered ? (
 				<motion.div
 					className={cn(
-						"absolute bg-secondary rounded opacity-0",
+						styles.activeIndicator,
 						isMobile
 							? "left-0 w-0.5"
 							: "bottom-0 -translate-x-1/2 h-0.5 left-1/2"

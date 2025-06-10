@@ -14,6 +14,16 @@ interface MobileNavMenuProps {
 	children: React.ReactNode;
 }
 
+const styles = {
+	trigger: {
+		base: "hover:bg-transparent hover:text-primary__light",
+		open: "bg-primary shadow-inner text-primary__lighter",
+	},
+	content:
+		"w-screen bg-background flex-col gap-4 rounded py-4 focus:bg-background hover:bg-background",
+	item: "flex items-center justify-start p-0 hover:bg-transparent focus:bg-transparent",
+} as const;
+
 export const MobileNavMenu = (props: MobileNavMenuProps) => {
 	const { children } = props;
 
@@ -24,24 +34,18 @@ export const MobileNavMenu = (props: MobileNavMenuProps) => {
 				<Button
 					variant="ghost"
 					size="icon"
-					className={cn(
-						"hover:bg-transparent hover:text-primary__light",
-						isOpen && "bg-primary shadow-inner text-primary__lighter"
-					)}
+					className={cn(styles.trigger.base, isOpen && styles.trigger.open)}
 				>
 					<MenuIcon className="size-6" />
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent
-				className="w-screen bg-background flex-col gap-4 rounded py-4 focus:bg-background hover:bg-background"
-				sideOffset={20}
-			>
+			<DropdownMenuContent className={styles.content} sideOffset={20}>
 				{React.Children.map(children, (child) => {
 					if (React.isValidElement<NavMenuItemProps>(child)) {
 						return (
 							<DropdownMenuItem
 								key={child.props.name}
-								className="flex items-center justify-start p-0 hover:bg-transparent focus:bg-transparent"
+								className={styles.item}
 								onSelect={(e) => e.preventDefault()}
 							>
 								{child}
