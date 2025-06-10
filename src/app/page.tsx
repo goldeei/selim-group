@@ -1,4 +1,4 @@
-import { LandingPage, Renovations, Services } from "@/components/sections";
+import { AboutUs, LandingPage, Renovations, Services } from "@/components/sections";
 
 export default function Home() {
 	return (
@@ -6,6 +6,7 @@ export default function Home() {
 			<LandingPage />
 			<Services />
 			<Renovations />
+			<AboutUs />
 		</div>
 	);
 }
