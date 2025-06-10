@@ -1,7 +1,7 @@
 "use client";
 
+import { SanityImage } from "@/components/sanity/sanity-image";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { SanityImage } from "@/components/ui/SanityImage";
 import { cn } from "@/lib/utils";
 import { Property } from "@/types/property";
 import { AnimatePresence, motion } from "motion/react";

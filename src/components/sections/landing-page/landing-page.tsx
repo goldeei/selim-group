@@ -1,8 +1,8 @@
 import LandingPageFooter from "@/app/assets/svgs/landing-page-footer.svg";
+import { Separator } from "@/components/common";
 import { sanityFetch } from "@/sanity/live";
 import { LANDING_PAGE_QUERY } from "@/sanity/queries";
 
-import { Separator } from "../../ui/Separator";
 import { LandingPageLogo } from "./landing-page-logo";
 import { LandingPageSubtitle } from "./landing-page-subtitle";
 

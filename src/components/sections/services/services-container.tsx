@@ -1,6 +1,6 @@
 "use client";
 
-import { TextCard } from "@/components/TextCard";
+import { TextCard } from "@/components/common/text-card";
 import { useIsMobile } from "@/context/isMobileContext";
 import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";

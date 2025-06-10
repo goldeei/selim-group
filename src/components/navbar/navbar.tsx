@@ -1,6 +1,6 @@
 "use client";
 
-import { Brand } from "@/components/Brand";
+import { Brand } from "@/components/common";
 import { useState } from "react";
 
 import { navMenuItems } from "./constants";
