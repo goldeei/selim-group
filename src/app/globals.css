@@ -73,10 +73,25 @@
 }
 
 @layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	html,
+	body {
+		height: 100%;
+		height: 100dvh;
+	}
+
 	body {
 		background: var(--background);
 		color: var(--foreground);
 		font-family: var(--font-oswald), Arial, Helvetica, sans-serif;
+		@apply bg-background text-foreground;
+		&[data-scroll-locked] {
+			overflow: auto !important;
+			margin-right: 0px !important;
+		}
 	}
 
 	h1,
@@ -106,21 +121,21 @@
 	* {
 		@apply border-border outline-ring/50;
 	}
-	body {
-		@apply bg-background text-foreground;
-	}
-	body[data-scroll-locked] {
-		overflow: auto !important;
-		margin-right: 0px !important;
-	}
 	a {
 		cursor: pointer;
 	}
 	.max-content-width {
 		max-width: 1920px;
 	}
-	section {
-		padding-top: 150px;
+}
+
+@layer utilities {
+	.gutter {
+		@apply px-4 sm:px-6 lg:px-8;
+	}
+
+	.break-out {
+		@apply -mx-4 sm:-mx-6 lg:-mx-8;
 	}
 }
 

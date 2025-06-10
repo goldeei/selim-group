@@ -45,7 +45,7 @@ export default function RootLayout({
 					<Suspense fallback={<div>...loading</div>}>
 						<SanityLive />
 						<NavBar />
-						{children}
+						<main>{children}</main>
 					</Suspense>
 				</AppProviders>
 			</body>
