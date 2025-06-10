@@ -1,4 +1,4 @@
-import { TeamMember, TeamMemberCard } from "@/components/about";
+import { TeamMember, TeamMemberCard } from "@/components/team-member";
 import { sanityFetch } from "@/sanity/live";
 import { TEAM_QUERY } from "@/sanity/queries";
 import { TeamMember as TeamMemberType } from "@/types/team";
