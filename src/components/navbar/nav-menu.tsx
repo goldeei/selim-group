@@ -7,7 +7,10 @@ import { NavMenuItemName, NavMenuItemProps } from "./types";
 interface NavMenuProps {
 	navMenuItems: NavMenuItemProps[];
 	activeMenuItem?: NavMenuItemName;
-	onNavItemClick?: (name: NavMenuItemName) => void;
+	onNavItemClick?: (
+		e: React.PointerEvent<HTMLAnchorElement>,
+		name: NavMenuItemName
+	) => void;
 }
 
 const styles = {
@@ -18,8 +21,10 @@ const styles = {
 
 export const NavMenu = (props: NavMenuProps) => {
 	const { navMenuItems, activeMenuItem, onNavItemClick } = props;
-	const handleNavItemClick = (name: NavMenuItemName) =>
-		onNavItemClick && onNavItemClick(name);
+	const handleNavItemClick = (
+		e: React.PointerEvent<HTMLAnchorElement>,
+		name: NavMenuItemName
+	) => onNavItemClick && onNavItemClick(e, name);
 
 	const isMobile = useIsMobile();
 
@@ -36,7 +41,7 @@ export const NavMenu = (props: NavMenuProps) => {
 					id={name}
 					title={name}
 					href={href}
-					onPointerDown={() => handleNavItemClick(name)}
+					onPointerDown={(e) => handleNavItemClick(e, name)}
 					isActive={name === activeMenuItem}
 					isMobile={isMobile}
 				>
