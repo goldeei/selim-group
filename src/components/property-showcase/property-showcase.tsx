@@ -6,7 +6,7 @@ import { Property } from "@/types/property";
 import { useState } from "react";
 
 import { PropertyCarousel } from "./property-carousel";
-import { PropertyText } from "./property-details/PropertyText";
+import { PropertyText } from "./property-details/property-text";
 
 const styles = {
 	base: "h-fit relative grid grid-cols-1 grid-rows-[auto_1fr] items-start",

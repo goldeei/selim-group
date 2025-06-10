@@ -1,1 +1,1 @@
-export * from "./PropertyText";
+export * from "./property-text";

@@ -1,2 +1,2 @@
-export * from "./PropertyCarousel";
-export * from "./PropertyCarouselButton";
+export * from "./property-carousel";
+export * from "./property-carousel-button";

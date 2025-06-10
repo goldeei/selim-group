@@ -1,18 +1,13 @@
 "use client";
 
-import {
-	Carousel,
-	CarouselApi,
-	CarouselContent,
-	CarouselItem,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { SanityImage } from "@/components/ui/SanityImage";
 import { cn } from "@/lib/utils";
 import { Property } from "@/types/property";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { CarouselButton } from "./PropertyCarouselButton";
+import { CarouselButton } from "./property-carousel-button";
 
 interface PropertyCarouselProps {
 	properties: Property[];

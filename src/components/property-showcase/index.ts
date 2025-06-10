@@ -1,3 +1,3 @@
 export * from "./property-carousel";
 export * from "./property-details";
-export * from "./PropertyShowcase";
+export * from "./property-showcase";
