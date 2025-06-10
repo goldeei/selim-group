@@ -1,2 +1,3 @@
-export * from "./landing-page-queries";
+export * from "./landing-page";
 export * from "./properties";
+export * from "./services";
