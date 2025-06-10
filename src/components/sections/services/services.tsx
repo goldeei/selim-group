@@ -1,6 +1,11 @@
 import {
-    Dumpster, InteriorDemolition, InteriorRenovation, LicensedRealtors, RealEstateInvestment
+	Dumpster,
+	InteriorDemolition,
+	InteriorRenovation,
+	LicensedRealtors,
+	RealEstateInvestment,
 } from "@/app/assets/svgs";
+import { Section } from "@/components/common/section";
 import { sanityFetch } from "@/sanity/live";
 import { SERVICES_QUERY } from "@/sanity/queries";
 
@@ -28,9 +33,9 @@ export const Services = async () => {
 	}));
 
 	return (
-		<section id="services" className="bg-background">
+		<Section id="services" className="bg-background">
 			<h2 className="responsive mb-4">Services</h2>
 			<ServicesContainer services={services} />
-		</section>
+		</Section>
 	);
 };
