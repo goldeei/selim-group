@@ -1,7 +1,7 @@
 import { TeamMember, TeamMemberCard } from "@/components/team-member";
 import { sanityFetch } from "@/sanity/live";
-import { TEAM_QUERY } from "@/sanity/queries";
-import { TeamMember as TeamMemberType } from "@/types/team";
+import { getPageByType } from "@/sanity/queries";
+import { AboutUsPage } from "@/types/pages";
 
 const styles = {
 	container: "h-screen min-h-fit flex flex-col bg-grey__lightest",
@@ -9,15 +9,15 @@ const styles = {
 } as const;
 
 export const AboutUs = async () => {
-	const { data: teamMembers }: { data: TeamMemberType[] } = await sanityFetch({
-		query: TEAM_QUERY.all,
+	const { data: aboutUsPage }: { data: AboutUsPage } = await sanityFetch({
+		query: getPageByType("aboutUsPage"),
 	});
-
 	return (
 		<section id="about-us" className={styles.container}>
 			<h2 className="responsive mb-4 text-primary">About Us</h2>
+			<p className="responsive mb-4 text-primary">{aboutUsPage.description}</p>
 			<div className={styles.content}>
-				{teamMembers.map((teamMember) => (
+				{aboutUsPage.teamMembers.map((teamMember) => (
 					<TeamMemberCard key={teamMember._id}>
 						<TeamMember teamMember={teamMember} />
 					</TeamMemberCard>
