@@ -11,20 +11,29 @@ import { PropertyText } from "./property-details/property-text";
 const styles = {
 	base: "h-fit relative grid grid-cols-1 grid-rows-[auto_1fr] items-start",
 	desktop: "lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 lg:items-center",
-	mobile: "h-full grid-rows-1",
+	mobile: "h-full grid-rows-1 break-out",
 };
 
 export const PropertyShowcase = ({
 	properties,
+	className,
 }: {
 	properties: Property[];
+	className?: string;
 }) => {
 	const [activeProperty, setActiveProperty] = useState(properties[0]);
 	const isMobile = useIsMobile();
 	const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
 
 	return (
-		<div className={cn(styles.base, styles.desktop, isMobile && styles.mobile)}>
+		<div
+			className={cn(
+				styles.base,
+				styles.desktop,
+				isMobile && styles.mobile,
+				className
+			)}
+		>
 			<PropertyText
 				activeProperty={activeProperty}
 				isMobile={isMobile}
