@@ -12,14 +12,17 @@ import { CarouselButton } from "./property-carousel-button";
 interface PropertyCarouselProps {
 	properties: Property[];
 	isMobile: boolean;
-	isDescriptionOpen: boolean;
 	onPropertyChange: (property: Property) => void;
 }
 
 const styles = {
 	carousel: {
-		base: "lg:col-span-2 relative p-12",
-		mobile: "inset-0 p-0 h-full [&_div]:h-full",
+		base: "lg:col-span-2 relative",
+		mobile: {
+			container: "inset-0 p-0 h-full [&_div]:h-full",
+			content: "-ml-3",
+			item: "basis-11/12 not-first:not-last:basis-10/12 pl-3",
+		},
 		mobileDisabled: "pointer-events-none",
 	},
 	image: {
@@ -38,7 +41,7 @@ const animations = {
 } as const;
 
 export const PropertyCarousel = (props: PropertyCarouselProps) => {
-	const { isMobile, isDescriptionOpen, properties, onPropertyChange } = props;
+	const { isMobile, properties, onPropertyChange } = props;
 
 	const [api, setApi] = useState<CarouselApi>();
 
@@ -54,16 +57,13 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 		<Carousel
 			className={cn(
 				styles.carousel.base,
-				isMobile && [
-					styles.carousel.mobile,
-					isDescriptionOpen && styles.carousel.mobileDisabled,
-				]
+				isMobile && [styles.carousel.mobile.container]
 			)}
 			setApi={setApi}
 		>
-			<CarouselContent>
+			<CarouselContent className={styles.carousel.mobile.content}>
 				{properties.map(({ _id, image, altText }) => (
-					<CarouselItem key={_id}>
+					<CarouselItem key={_id} className={styles.carousel.mobile.item}>
 						<SanityImage
 							image={image}
 							aspectRatio={isMobile ? "3:4" : "16:9"}
@@ -75,7 +75,7 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 			</CarouselContent>
 
 			<AnimatePresence>
-				{!isDescriptionOpen && (
+				{!isMobile && (
 					<motion.div
 						initial={animations.buttons.initial}
 						animate={animations.buttons.animate}
