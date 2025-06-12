@@ -2,7 +2,7 @@ import { CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
-import { controlStyles, controlVariants } from "./styles";
+import { controlStyles, controlVariants } from "../property-carousel/styles";
 
 export const styles = {
 	wrapper: "flex items-center rounded-full",
