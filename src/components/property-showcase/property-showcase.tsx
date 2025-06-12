@@ -43,7 +43,6 @@ export const PropertyShowcase = ({
 			<PropertyCarousel
 				properties={properties}
 				isMobile={isMobile}
-				isDescriptionOpen={isDescriptionOpen}
 				onPropertyChange={setActiveProperty}
 			/>
 		</div>
