@@ -44,6 +44,7 @@ export const PropertyShowcase = ({
 				properties={properties}
 				isMobile={isMobile}
 				onPropertyChange={setActiveProperty}
+				activeProperty={activeProperty}
 			/>
 		</div>
 	);
