@@ -19,24 +19,34 @@ interface PropertyCarouselProps {
 
 const styles = {
 	carousel: {
-		base: "relative lg:col-span-2 relative",
+		base: "relative lg:col-span-2",
 		mobile: {
-			container: "inset-0 p-0 h-full [&_div]:h-full",
+			container: "inset-0 h-full p-0 [&_div]:h-full",
 			content: "-ml-3",
 			item: "basis-11/12 not-first:not-last:basis-10/12 pl-3",
 		},
-		mobileDisabled: "pointer-events-none",
 	},
 	image: {
-		base: "size-full m-auto aspect-[16/9]",
-		mobile: "object-cover aspect-[3/4]",
+		base: "m-auto size-full aspect-[16/9]",
+		mobile: "aspect-[3/4] object-cover",
 	},
 	buttonContainer:
-		"pt-12 w-full transform-all px-2 py-1 rounded-3xl absolute bottom-1 left-1/2 -translate-x-1/2 flex justify-center items-center gap-1",
+		"absolute bottom-1 left-1/2 z-50 flex w-full max-h-fit -translate-x-1/2 transform-all justify-center items-center gap-1 px-2 py-1 pt-12 rounded-3xl",
 	indicator: {
-		wrapper: "",
-		item: `size-2 shadow-inner rounded-full bg-${controlStyles.color.default}`,
-		active: `bg-${controlStyles.color.hover} shadow`,
+		container: {
+			base: "flex max-h-fit gap-2 px-2 py-1 rounded-3xl",
+			mobile: "border-transparent",
+		},
+		item: {
+			base: "size-2 max-h-2 rounded-full shadow-inner",
+			desktop: `bg-${controlStyles.color.default}`,
+			mobile: "bg-secondary__dark",
+		},
+		active: {
+			base: "shadow",
+			desktop: `bg-${controlStyles.color.hover}`,
+			mobile: "bg-secondary__light",
+		},
 	},
 } as const;
 
@@ -53,10 +63,9 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 		}
 	}, [api, onPropertyChange, properties]);
 
-	const handlePropertyIndicatorClick = (property: Property) => {
-		onPropertyChange(property);
-		api?.scrollTo(properties.indexOf(property));
-	};
+	useEffect(() => {
+		api?.scrollTo(properties.indexOf(activeProperty));
+	}, [activeProperty, api, properties]);
 
 	return (
 		<Carousel
@@ -83,26 +92,35 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 				initial="initial"
 				whileHover="hovered"
 			>
-				<CarouselButton dir="prev" />
+				{!isMobile && <CarouselButton dir="prev" />}
 				<motion.div
-					variants={indicatorVariants}
+					key={isMobile ? "indicators-mobile" : "indicators-desktop"}
+					variants={isMobile ? undefined : indicatorVariants}
 					className={cn(
 						controlStyles.container,
-						"px-2 py-1 flex gap-2 rounded-3xl"
+						styles.indicator.container.base,
+						isMobile && styles.indicator.container.mobile
 					)}
 				>
 					{properties.map((property) => (
 						<div
 							key={property._id}
 							className={cn(
-								styles.indicator.item,
-								activeProperty._id === property._id && styles.indicator.active
+								styles.indicator.item.base,
+								isMobile
+									? styles.indicator.item.mobile
+									: styles.indicator.item.desktop,
+								activeProperty._id === property._id &&
+									(styles.indicator.active.base,
+									isMobile
+										? styles.indicator.active.mobile
+										: styles.indicator.active.desktop)
 							)}
-							onClick={() => handlePropertyIndicatorClick(property)}
+							onClick={() => onPropertyChange(property)}
 						/>
 					))}
 				</motion.div>
-				<CarouselButton dir="next" />
+				{!isMobile && <CarouselButton dir="next" />}
 			</motion.div>
 		</Carousel>
 	);
