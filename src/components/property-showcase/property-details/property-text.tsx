@@ -13,14 +13,14 @@ interface PropertyTextProps {
 
 const styles = {
 	container: {
-		base: "lg:col-span-1 relative",
+		base: "lg:col-span-1 relative pointer-events-none",
 		mobile:
-			"absolute bottom-0 z-10 mt-auto bg-gradient-to-b from-transparent h-fit min-h-40 p-8",
+			"absolute bottom-0 z-10 mt-auto bg-gradient-to-b from-transparent h-fit p-8",
 		mobileGradientCollapsed: "to-grey__darkest/50 to-grey__darkest/90 to-60%",
 		mobileGradientExpanded: "to-grey__darkest/50 to-grey__darkest/90 to-30%",
 	},
 	toggleButton: {
-		wrapper: "w-full flex justify-center items-center",
+		wrapper: "w-full flex justify-center items-center pointer-events-auto",
 		button:
 			"w-full text-secondary__light hover:bg-transparent hover:text-secondary__light",
 		icon: "size-6",
