@@ -10,7 +10,8 @@ import { PropertyText } from "./property-details/property-text";
 
 const styles = {
 	base: "relative flex-1 min-h-0 flex flex-col justify-center gap-4 overflow-hidden",
-	desktop: "lg:flex-row lg:items-center lg:gap-8",
+	desktop:
+		"lg:flex-row lg:items-center lg:gap-8 mb-8 p-4 md:p-8 lg:p-0 lg:px-8 bg-black/10 rounded shadow-inner",
 	mobile: "h-full break-out",
 };
 
@@ -29,8 +30,7 @@ export const PropertyShowcase = ({
 		<div
 			className={cn(
 				styles.base,
-				styles.desktop,
-				isMobile && styles.mobile,
+				isMobile ? styles.mobile : styles.desktop,
 				className
 			)}
 		>

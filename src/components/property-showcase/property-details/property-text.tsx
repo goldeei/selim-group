@@ -37,7 +37,7 @@ const styles = {
 		container: "overflow-hidden",
 		text: {
 			base: "text-primary__lighter",
-			desktop: "md:text-xl",
+			desktop: "sm:text-lg md:text-xl",
 			mobile: "text-lg",
 		},
 	},
