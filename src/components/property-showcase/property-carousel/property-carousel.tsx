@@ -19,9 +19,9 @@ interface PropertyCarouselProps {
 
 const styles = {
 	carousel: {
-		base: "relative flex-1 min-h-0",
+		base: "relative max-h-fit overflow-hidden",
 		mobile: {
-			container: "inset-0 h-full p-0 [&_div]:h-full",
+			container: "inset-0 h-full p-0 [&_div]:h-full max-h-full",
 			content: "-ml-3",
 			item: "basis-11/12 not-first:not-last:basis-10/12 pl-3",
 		},
@@ -75,7 +75,7 @@ export const PropertyCarousel = (props: PropertyCarouselProps) => {
 			)}
 			setApi={setApi}
 		>
-			<CarouselContent className={styles.carousel.mobile.content}>
+			<CarouselContent className={cn(styles.carousel.mobile.content)}>
 				{properties.map(({ _id, image, altText }) => (
 					<CarouselItem key={_id} className={styles.carousel.mobile.item}>
 						<SanityImage
