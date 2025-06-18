@@ -12,7 +12,7 @@ export const Renovations = async () => {
 	return (
 		<Section
 			id="renovations"
-			className="flex flex-col bg-grey__darker h-screen"
+			className="flex flex-col bg-grey__darker h-screen md:pb-8"
 		>
 			<h2 className="responsive mb-4 text-grey__lightest">Renovations</h2>
 			<PropertyShowcase properties={data} />
