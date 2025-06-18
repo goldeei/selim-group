@@ -19,11 +19,11 @@ export const Section = (props: SectionProps) => {
 	return (
 		<section
 			className={cn(
-				`pt-[${LAYOUT.NAVBAR_HEIGHT}]`,
 				{ [styles.desktop]: fullHeight, [styles.mobile]: fullHeight },
 				!noGutter && "gutter",
 				className
 			)}
+			style={{ paddingTop: `${LAYOUT.NAVBAR_HEIGHT_PX + 32}px` }}
 			{...rest}
 		>
 			<div className={cn(styles.content, "")}>{children}</div>
