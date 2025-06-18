@@ -55,7 +55,6 @@ export const PropertyText = (props: PropertyTextProps) => {
 
 	return (
 		<motion.div
-			layout="preserve-aspect"
 			className={cn(
 				styles.container.base,
 				isMobile && [
