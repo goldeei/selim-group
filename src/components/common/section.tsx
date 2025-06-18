@@ -10,7 +10,7 @@ interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 const styles = {
 	desktop: `min-h-[calc(100dvh-${LAYOUT.NAVBAR_HEIGHT})]`,
 	mobile: `min-h-dvh sm:min-h-[calc(100dvh-${LAYOUT.NAVBAR_HEIGHT})]`,
-	content: "max-content-width mx-auto",
+	content: "max-content-width mx-auto h-full flex flex-col",
 };
 
 export const Section = (props: SectionProps) => {
@@ -26,9 +26,7 @@ export const Section = (props: SectionProps) => {
 			)}
 			{...rest}
 		>
-			<div className={cn(styles.content, "flex-1 flex flex-col")}>
-				{children}
-			</div>
+			<div className={cn(styles.content, "")}>{children}</div>
 		</section>
 	);
 };

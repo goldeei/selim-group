@@ -9,9 +9,9 @@ import { PropertyCarousel } from "./property-carousel";
 import { PropertyText } from "./property-details/property-text";
 
 const styles = {
-	base: "h-fit relative grid grid-cols-1 grid-rows-[auto_1fr] items-start",
-	desktop: "lg:grid-cols-3 lg:grid-rows-1 lg:gap-8 lg:items-center",
-	mobile: "h-full grid-rows-1 break-out",
+	base: "relative flex-1 min-h-0 flex flex-col gap-4 overflow-hidden",
+	desktop: "lg:flex-row",
+	mobile: "h-full break-out",
 };
 
 export const PropertyShowcase = ({

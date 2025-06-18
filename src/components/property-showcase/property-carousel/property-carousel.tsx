@@ -19,7 +19,7 @@ interface PropertyCarouselProps {
 
 const styles = {
 	carousel: {
-		base: "relative lg:col-span-2",
+		base: "relative flex-1 min-h-0",
 		mobile: {
 			container: "inset-0 h-full p-0 [&_div]:h-full",
 			content: "-ml-3",
