@@ -10,7 +10,7 @@ const styles = {
 	container:
 		"relative -z-10 bg-primary h-screen flex flex-col justify-center items-center overflow-hidden",
 	content:
-		"fixed w-full max-w-4xl flex flex-col items-center gap-4 mt-auto px-4 md:px-0",
+		"z-0 fixed w-full max-w-4xl flex flex-col items-center gap-4 mt-auto px-4 md:px-0",
 } as const;
 
 export const LandingPage = async () => {
@@ -25,7 +25,7 @@ export const LandingPage = async () => {
 				<Separator />
 				<LandingPageSubtitle subtitle={subtitle} />
 			</div>
-			<LandingPageFooter className="w-[110%] mt-auto" />
+			<LandingPageFooter className="w-[110%] mt-auto z-10" />
 		</div>
 	);
 };
