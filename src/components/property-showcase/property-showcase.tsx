@@ -9,8 +9,8 @@ import { PropertyCarousel } from "./property-carousel";
 import { PropertyText } from "./property-details/property-text";
 
 const styles = {
-	base: "relative flex-1 min-h-0 flex flex-col gap-4 overflow-hidden",
-	desktop: "lg:flex-row",
+	base: "relative flex-1 min-h-0 flex flex-col justify-center gap-4 overflow-hidden",
+	desktop: "lg:flex-row lg:items-center lg:gap-8",
 	mobile: "h-full break-out",
 };
 
@@ -34,17 +34,17 @@ export const PropertyShowcase = ({
 				className
 			)}
 		>
-			<PropertyText
-				activeProperty={activeProperty}
-				isMobile={isMobile}
-				isDescriptionOpen={isDescriptionOpen}
-				setIsDescriptionOpen={setIsDescriptionOpen}
-			/>
 			<PropertyCarousel
 				properties={properties}
 				isMobile={isMobile}
 				onPropertyChange={setActiveProperty}
 				activeProperty={activeProperty}
+			/>
+			<PropertyText
+				activeProperty={activeProperty}
+				isMobile={isMobile}
+				isDescriptionOpen={isDescriptionOpen}
+				setIsDescriptionOpen={setIsDescriptionOpen}
 			/>
 		</div>
 	);
