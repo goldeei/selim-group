@@ -36,8 +36,8 @@ const styles = {
 	description: {
 		container: "overflow-hidden",
 		text: {
-			base: "text-primary__lighter text-lg",
-			desktop: "md:text-xl lg:text-2xl",
+			base: "text-primary__lighter",
+			desktop: "md:text-xl",
 			mobile: "text-lg",
 		},
 	},
