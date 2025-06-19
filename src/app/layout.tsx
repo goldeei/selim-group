@@ -1,5 +1,6 @@
 import { NavBar } from "@/components/navbar";
 import { AppProviders } from "@/context/AppProviders";
+import { LAYOUT } from "@/lib/constants";
 import { SanityLive } from "@/sanity/live";
 import { Bebas_Neue, Oswald } from "next/font/google";
 import { Suspense } from "react";
@@ -40,7 +41,15 @@ export default function RootLayout({
 					content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 				/>
 			</head>
-			<body className={`${oswald.variable} ${bebasNeue.variable} antialiased`}>
+			<body
+				className={`${oswald.variable} ${bebasNeue.variable} antialiased`}
+				style={
+					{
+						"--navbar-height": LAYOUT.NAVBAR_HEIGHT,
+						"--full-page-height": `calc(100dvh - ${LAYOUT.NAVBAR_HEIGHT})`,
+					} as React.CSSProperties
+				}
+			>
 				<AppProviders fallback={<div>...loading</div>}>
 					<Suspense fallback={<div>...loading</div>}>
 						<SanityLive />
