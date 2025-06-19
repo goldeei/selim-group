@@ -9,11 +9,6 @@ module.exports = {
 		},
 	},
 	safelist: [
-		// Specific height utilities you use
-		"min-h-[calc(100dvh-4rem)]",
-		"min-h-dvh",
-		"sm:min-h-[calc(100dvh-4rem)]",
-
 		// Primary colors
 		{
 			pattern: /bg-primary-(lighter|light|dark|darker)/,
