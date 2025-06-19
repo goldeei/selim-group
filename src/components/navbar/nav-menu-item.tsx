@@ -8,7 +8,7 @@ const transition = {
 	type: "spring",
 	stiffness: 500,
 	damping: 30,
-};
+} as const;
 
 interface NavMenuItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	isActive: boolean;
