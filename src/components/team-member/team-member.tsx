@@ -17,12 +17,12 @@ const styles = {
 		wrapper: "relative w-full max-w-72",
 		image: "relative z-10 object-cover w-full h-full rounded-xs",
 		underlay:
-			"absolute w-full max-w-72 h-full -bottom-1.5 -left-1.5 bg-primary__light/50 rounded-xs",
+			"absolute w-full max-w-72 h-full -bottom-1.5 -left-1.5 bg-primary-light/50 rounded-xs",
 	},
 	content: {
 		container: "flex flex-col p-4 flex-1",
-		description: "text-primary__dark my-auto",
-		certifications: "italic text-grey__dark mt-auto",
+		description: "text-primary-dark my-auto",
+		certifications: "italic text-grey-dark mt-auto",
 	},
 } as const;
 

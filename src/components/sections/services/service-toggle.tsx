@@ -24,7 +24,7 @@ export const ServiceToggle = ({
 			className={cn(
 				"rounded transition-all font-heading text-xl flex items-center justify-between gap-6 h-fit py-2",
 				isActive
-					? "bg-primary__lighter text-primary !shadow-inner hover:bg-primary__lighter"
+					? "bg-primary-lighter text-primary !shadow-inner hover:bg-primary-lighter"
 					: "bg-primary shadow"
 			)}
 		>

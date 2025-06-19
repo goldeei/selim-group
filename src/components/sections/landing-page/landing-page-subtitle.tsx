@@ -2,7 +2,7 @@
 
 import { useIsMobile } from "@/context/isMobileContext";
 
-const styles = "text-primary__lighter tracking-widest responsive";
+const styles = "text-primary-lighter tracking-widest responsive";
 
 interface LandingPageSubtitle {
 	subtitle: string;

@@ -16,8 +16,8 @@ interface MobileNavMenuProps {
 
 const styles = {
 	trigger: {
-		base: "hover:bg-transparent hover:text-primary__light",
-		open: "bg-primary shadow-inner text-primary__lighter",
+		base: "hover:bg-transparent hover:text-primary-light",
+		open: "bg-primary shadow-inner text-primary-lighter",
 	},
 	content:
 		"w-screen bg-background flex-col gap-4 rounded py-4 focus:bg-background hover:bg-background",

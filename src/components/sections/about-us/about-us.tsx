@@ -5,7 +5,7 @@ import { getPageByType } from "@/sanity/queries";
 import { AboutUsPage } from "@/types/pages";
 
 const styles = {
-	container: "flex flex-col bg-grey__lightest",
+	container: "flex flex-col bg-grey-lightest",
 	content: "flex flex-col gap-2",
 } as const;
 

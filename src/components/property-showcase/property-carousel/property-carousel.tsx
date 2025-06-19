@@ -40,12 +40,12 @@ const styles = {
 		item: {
 			base: "size-2 max-h-2 rounded-full shadow-inner",
 			desktop: `bg-${controlStyles.color.default}`,
-			mobile: "bg-secondary__dark",
+			mobile: "bg-secondary-dark",
 		},
 		active: {
 			base: "shadow",
 			desktop: `bg-${controlStyles.color.hover}`,
-			mobile: "bg-secondary__light",
+			mobile: "bg-secondary-light",
 		},
 	},
 } as const;

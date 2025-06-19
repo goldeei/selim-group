@@ -16,27 +16,27 @@ const styles = {
 		base: "lg:max-w-1/3 relative pointer-events-none",
 		mobile:
 			"absolute bottom-0 z-10 mt-auto bg-gradient-to-b from-transparent h-fit p-8",
-		mobileGradientCollapsed: "to-grey__darkest/50 to-grey__darkest/90 to-60%",
-		mobileGradientExpanded: "to-grey__darkest/50 to-grey__darkest/90 to-30%",
+		mobileGradientCollapsed: "to-grey-darkest/50 to-grey-darkest/90 to-60%",
+		mobileGradientExpanded: "to-grey-darkest/50 to-grey-darkest/90 to-30%",
 	},
 	toggleButton: {
 		wrapper: "w-full flex justify-center items-center pointer-events-auto",
 		button:
-			"w-full text-secondary__light hover:bg-transparent hover:text-secondary__light",
+			"w-full text-secondary-light hover:bg-transparent hover:text-secondary-light",
 		icon: "size-6",
 	},
 	titleSection: {
-		base: "border-b-3 mb-4 border-secondary__light",
+		base: "border-b-3 mb-4 border-secondary-light",
 		mobile: "py-0",
 	},
 	title: {
-		base: "text-primary__lighter text-2xl pb-2",
+		base: "text-primary-lighter text-2xl pb-2",
 		responsive: "md:text-3xl lg:text-4xl",
 	},
 	description: {
 		container: "overflow-hidden",
 		text: {
-			base: "text-primary__lighter",
+			base: "text-primary-lighter",
 			desktop: "sm:text-lg md:text-xl",
 			mobile: "text-lg",
 		},

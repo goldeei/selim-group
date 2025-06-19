@@ -1,7 +1,7 @@
 const controlStyles = {
 	container: "border border-white/60 shadow-lg",
 	color: {
-		default: "grey__light",
+		default: "grey-light",
 		hover: "grey",
 	},
 };
