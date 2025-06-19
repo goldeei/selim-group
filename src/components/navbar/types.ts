@@ -1,10 +1,10 @@
 import { AnchorHTMLAttributes } from "react";
 
-import { navMenuItems } from "./constants";
+import { NAV_MENU_ITEMS } from "./constants";
 
 export type NavMenuItemProps = Pick<
 	AnchorHTMLAttributes<HTMLAnchorElement>,
-	"title" | "href"
-> & { name: string };
+	"title" | "href" | "id"
+>;
 
-export type NavMenuItemName = (typeof navMenuItems)[number]["name"];
+export type NavMenuItemName = (typeof NAV_MENU_ITEMS)[number]["id"];

@@ -5,7 +5,7 @@ import { LAYOUT } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-import { navMenuItems } from "./constants";
+import { NAV_MENU_ITEMS } from "./constants";
 import { NavMenu } from "./nav-menu";
 import { NavMenuContainer } from "./nav-menu-container";
 import { NavMenuItemName } from "./types";
@@ -55,7 +55,7 @@ export const NavBar = () => {
 				/>
 				<NavMenuContainer>
 					<NavMenu
-						navMenuItems={navMenuItems}
+						navMenuItems={NAV_MENU_ITEMS}
 						onNavItemClick={handleNavItemClick}
 						activeMenuItem={activeItem}
 					/>

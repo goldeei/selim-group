@@ -35,13 +35,13 @@ export const NavMenu = (props: NavMenuProps) => {
 				isMobile ? styles.mobile : styles.desktop
 			)}
 		>
-			{navMenuItems.map(({ name, title, href }) => (
+			{navMenuItems.map(({ id, title, href }) => (
 				<NavMenuItem
-					key={name}
-					id={name}
-					title={name}
+					key={id}
+					id={id}
+					title={title}
 					href={href}
-					onPointerDown={(e) => handleNavItemClick(e, name)}
+					onPointerDown={(e) => handleNavItemClick(e, id)}
 					isActive={name === activeMenuItem}
 					isMobile={isMobile}
 				>
