@@ -1,8 +1,8 @@
 "use client";
 
-import { useIsMobile } from "@/context/isMobileContext";
+import { cn } from "@/lib/utils";
 
-const styles = "text-primary-lighter tracking-widest responsive";
+const styles = "text-primary-lighter tracking-widest";
 
 interface LandingPageSubtitle {
 	subtitle: string;
@@ -10,10 +10,14 @@ interface LandingPageSubtitle {
 export const LandingPageSubtitle = (props: LandingPageSubtitle) => {
 	const { subtitle } = props;
 
-	const isMobile = useIsMobile();
-	return isMobile ? (
-		<h4 className={styles}>{subtitle}</h4>
-	) : (
-		<h2 className={styles}>{subtitle}</h2>
+	return (
+		<h2
+			className={cn(
+				styles,
+				"text-3xl min-[480px]:text-4xl sm:text-5xl md:text-6xl"
+			)}
+		>
+			{subtitle}
+		</h2>
 	);
 };
