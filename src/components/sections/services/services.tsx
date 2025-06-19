@@ -6,6 +6,7 @@ import {
 	RealEstateInvestment,
 } from "@/app/assets/svgs";
 import { Section } from "@/components/common/section";
+import { MAIN_PAGE_SECTIONS } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/live";
 import { SERVICES_QUERY } from "@/sanity/queries";
 
@@ -33,8 +34,8 @@ export const Services = async () => {
 	}));
 
 	return (
-		<Section id="services" className="bg-background">
-			<h2 className="responsive mb-4">Services</h2>
+		<Section id={MAIN_PAGE_SECTIONS.services.id} className="bg-background">
+			<h2 className="responsive mb-4">{MAIN_PAGE_SECTIONS.services.title}</h2>
 			<ServicesContainer services={services} />
 		</Section>
 	);

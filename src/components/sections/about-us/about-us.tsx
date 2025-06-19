@@ -1,5 +1,6 @@
 import { Section } from "@/components/common/section";
 import { TeamMember, TeamMemberCard } from "@/components/team-member";
+import { MAIN_PAGE_SECTIONS } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/live";
 import { getPageByType } from "@/sanity/queries";
 import { AboutUsPage } from "@/types/pages";
@@ -14,8 +15,10 @@ export const AboutUs = async () => {
 		query: getPageByType("aboutUsPage"),
 	});
 	return (
-		<Section id="about-us" className={styles.container}>
-			<h2 className="responsive mb-4 text-primary">About Us</h2>
+		<Section id={MAIN_PAGE_SECTIONS.aboutUs.id} className={styles.container}>
+			<h2 className="responsive mb-4 text-primary">
+				{MAIN_PAGE_SECTIONS.aboutUs.title}
+			</h2>
 			<p className="responsive mb-4 text-primary">{aboutUsPage.description}</p>
 			<div className={styles.content}>
 				{aboutUsPage.teamMembers.map((teamMember) => (
