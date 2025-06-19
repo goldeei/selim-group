@@ -11,7 +11,7 @@ import { NavMenuContainer } from "./nav-menu-container";
 import { NavMenuItemName } from "./types";
 
 const styles = {
-	container: `h-[${LAYOUT.NAVBAR_HEIGHT}] w-full fixed z-40 top-0 bg-background gutter`,
+	container: `h-[var(--navbar-height)] w-full fixed z-40 top-0 bg-background gutter`,
 	content: "h-full max-content-width mx-auto flex justify-between items-center",
 } as const;
 
